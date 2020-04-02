@@ -14,8 +14,7 @@ namespace DataModel
             StudentCourses = new HashSet<Student_Course>();
         }
 
-
-        public decimal CourseID { get; set; }
+         public decimal CourseID { get; set; }
 
         [StringLength(150)]
         public string CourseName { get; set; }
