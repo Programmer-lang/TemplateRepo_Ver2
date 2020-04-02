@@ -1,4 +1,5 @@
-﻿<UserControl x:Class="SchoolTemplate.Views.CourseCollectionView"
+﻿<UserControl 
+    x:Class="SchoolTemplate.Views.CourseCollectionView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
