@@ -70,5 +70,6 @@
                 <dxg:GridSummaryItem SummaryType="Count" />
             </dxg:GridControl.GroupSummary>
         </dxg:GridControl>
+       
     </DockPanel>
 </UserControl>

@@ -61,6 +61,7 @@
             <dxg:GridControl.Columns>
                 <dxg:GridColumn IsSmart="True" FieldName="StudentID" />
                 <dxg:GridColumn IsSmart="True" FieldName="StudentName" />
+                <dxg:GridColumn FieldName="School.SchoolName" Header="{x:Static localization:SchoolDBContextResources.Student_School}" ReadOnly="True" />
             </dxg:GridControl.Columns>
             <dxg:GridControl.TotalSummary>
                 <dxg:GridSummaryItem SummaryType="Count" Alignment="Right" />

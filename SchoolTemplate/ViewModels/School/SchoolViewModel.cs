@@ -29,12 +29,15 @@ namespace SchoolTemplate.ViewModels {
 
         const string ViewsGroup = "Views";
         public SchoolDBContextModuleDescription[] Modules {get; set;} = new SchoolDBContextModuleDescription[] {
-             new SchoolDBContextModuleDescription(SchoolDBContextResources.TeacherPlural, "TeacherCollectionView", TablesGroup, null),
 
-            new SchoolDBContextModuleDescription(SchoolDBContextResources.CoursePlural, "CourseCollectionView", TablesGroup, null),
-                new SchoolDBContextModuleDescription(SchoolDBContextResources.StudentPlural, "StudentCollectionView", TablesGroup, null),
-               // new SchoolDBContextModuleDescription(SchoolDBContextResources.SchoolPlural, "SchoolCollectionView", TablesGroup, GetPeekCollectionViewModelFactory(x => x.Schools)),
-            };
+              new SchoolDBContextModuleDescription(SchoolDBContextResources.TeacherPlural, "TeacherCollectionView", TablesGroup, null),
+              new SchoolDBContextModuleDescription(SchoolDBContextResources.StudentPlural, "StudentCollectionView", TablesGroup, null),
+              new SchoolDBContextModuleDescription(SchoolDBContextResources.DepartmentPlural, "DepartmentCollectionView", TablesGroup, null),
+              new SchoolDBContextModuleDescription(SchoolDBContextResources.VehiculePlural, "VehiculeCollectionView", TablesGroup, null),
+
+
+
+        };
 
         public void OnSelectedModuleChanged()
         {
@@ -42,16 +45,24 @@ namespace SchoolTemplate.ViewModels {
 
             switch (SelectedModule.ModuleTitle)
             {
-               
+
 
                 case "Teachers":
-                    service.CreateDocument(SelectedModule.DocumentType, SchoolTeachersDetails,this);
+                    service.CreateDocument(SelectedModule.DocumentType, SchoolTeachersDetails, this);
 
 
-            break;
-                case "Course":
                     break;
-                case "Student":
+                case "Students":
+                    service.CreateDocument(SelectedModule.DocumentType, SchoolStudentsDetails, this);
+
+                    break;
+                case "Departments":
+                    service.CreateDocument(SelectedModule.DocumentType, SchoolDepartmentsDetails, this);
+
+                    break;
+                case "Vehicules":
+                    service.CreateDocument(SelectedModule.DocumentType, SchoolVehiculesDetails, this);
+
                     break;
             }
             
@@ -75,27 +86,108 @@ public static SchoolViewModel Create(IUnitOfWorkFactory<ISchoolDBContextUnitOfWo
             : base(unitOfWorkFactory ?? UnitOfWorkSource.GetUnitOfWorkFactory(), x => x.Schools, x => x.SchoolName) {
                 }
 
-
+        public IEntitiesViewModel<Student> LookUpStudents
+        {
+            get
+            {
+                return GetLookUpEntitiesViewModel(
+                    propertyExpression: (SchoolViewModel x) => x.LookUpStudents,
+                    getRepositoryFunc: x => x.Students);
+            }
+        }
+        /// <summary>
+        /// The view model that contains a look-up collection of Departments for the corresponding navigation property in the view.
+        /// </summary>
+        public IEntitiesViewModel<Department> LookUpDepartments
+        {
+            get
+            {
+                return GetLookUpEntitiesViewModel(
+                    propertyExpression: (SchoolViewModel x) => x.LookUpDepartments,
+                    getRepositoryFunc: x => x.Departments);
+            }
+        }
         /// <summary>
         /// The view model that contains a look-up collection of Teachers for the corresponding navigation property in the view.
         /// </summary>
-        public IEntitiesViewModel<Teacher> LookUpTeachers {
-            get {
+        public IEntitiesViewModel<Teacher> LookUpTeachers
+        {
+            get
+            {
                 return GetLookUpEntitiesViewModel(
                     propertyExpression: (SchoolViewModel x) => x.LookUpTeachers,
                     getRepositoryFunc: x => x.Teachers);
             }
         }
+        /// <summary>
+        /// The view model that contains a look-up collection of Vehicules for the corresponding navigation property in the view.
+        /// </summary>
+        public IEntitiesViewModel<Vehicule> LookUpVehicules
+        {
+            get
+            {
+                return GetLookUpEntitiesViewModel(
+                    propertyExpression: (SchoolViewModel x) => x.LookUpVehicules,
+                    getRepositoryFunc: x => x.Vehicules);
+            }
+        }
 
+
+        /// <summary>
+        /// The view model for the SchoolStudents detail collection.
+        /// </summary>
+        public CollectionViewModelBase<Student, Student, decimal, ISchoolDBContextUnitOfWork> SchoolStudentsDetails
+        {
+            get
+            {
+                return GetDetailsCollectionViewModel(
+                    propertyExpression: (SchoolViewModel x) => x.SchoolStudentsDetails,
+                    getRepositoryFunc: x => x.Students,
+                    foreignKeyExpression: x => x.SchoolID,
+                    navigationExpression: x => x.School);
+            }
+        }
+
+        /// <summary>
+        /// The view model for the SchoolDepartments detail collection.
+        /// </summary>
+        public CollectionViewModelBase<Department, Department, decimal, ISchoolDBContextUnitOfWork> SchoolDepartmentsDetails
+        {
+            get
+            {
+                return GetDetailsCollectionViewModel(
+                    propertyExpression: (SchoolViewModel x) => x.SchoolDepartmentsDetails,
+                    getRepositoryFunc: x => x.Departments,
+                    foreignKeyExpression: x => x.SchoolID,
+                    navigationExpression: x => x.School);
+            }
+        }
 
         /// <summary>
         /// The view model for the SchoolTeachers detail collection.
         /// </summary>
-        public CollectionViewModelBase<Teacher, Teacher, decimal, ISchoolDBContextUnitOfWork> SchoolTeachersDetails {
-            get { 
+        public CollectionViewModelBase<Teacher, Teacher, decimal, ISchoolDBContextUnitOfWork> SchoolTeachersDetails
+        {
+            get
+            {
                 return GetDetailsCollectionViewModel(
                     propertyExpression: (SchoolViewModel x) => x.SchoolTeachersDetails,
                     getRepositoryFunc: x => x.Teachers,
+                    foreignKeyExpression: x => x.SchoolID,
+                    navigationExpression: x => x.School);
+            }
+        }
+
+        /// <summary>
+        /// The view model for the SchoolVehicules detail collection.
+        /// </summary>
+        public CollectionViewModelBase<Vehicule, Vehicule, decimal, ISchoolDBContextUnitOfWork> SchoolVehiculesDetails
+        {
+            get
+            {
+                return GetDetailsCollectionViewModel(
+                    propertyExpression: (SchoolViewModel x) => x.SchoolVehiculesDetails,
+                    getRepositoryFunc: x => x.Vehicules,
                     foreignKeyExpression: x => x.SchoolID,
                     navigationExpression: x => x.School);
             }

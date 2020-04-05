@@ -26,12 +26,20 @@ namespace SchoolTemplate.SchoolDBContextDataModel {
             get { return GetRepository((Student x) => x.StudentID); }
         }
 
+        IRepository<School, decimal> ISchoolDBContextUnitOfWork.Schools {
+            get { return GetRepository((School x) => x.SchoolID); }
+        }
+
+        IRepository<Department, decimal> ISchoolDBContextUnitOfWork.Departments {
+            get { return GetRepository((Department x) => x.DepartmentID); }
+        }
+
         IRepository<Teacher, decimal> ISchoolDBContextUnitOfWork.Teachers {
             get { return GetRepository((Teacher x) => x.TeacherID); }
         }
 
-        IRepository<School, decimal> ISchoolDBContextUnitOfWork.Schools {
-            get { return GetRepository((School x) => x.SchoolID); }
+        IRepository<Vehicule, decimal> ISchoolDBContextUnitOfWork.Vehicules {
+            get { return GetRepository((Vehicule x) => x.VehiculeID); }
         }
     }
 }

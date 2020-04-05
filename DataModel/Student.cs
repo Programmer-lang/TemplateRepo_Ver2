@@ -18,7 +18,10 @@ namespace DataModel
 
         [StringLength(150)]
         public string StudentName { get; set; }
+        public decimal SchoolID { get; set; }
 
-       public virtual ICollection<Student_Course> StudentCourses { get; set; }
+        public virtual School School { get; set; }
+
+        public virtual ICollection<Student_Course> StudentCourses { get; set; }
     }
 }

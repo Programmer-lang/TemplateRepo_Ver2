@@ -38,16 +38,19 @@ namespace SchoolTemplate.ViewModels {
 
         protected override void RefreshLookUpCollections(bool raisePropertyChanged) {
             base.RefreshLookUpCollections(raisePropertyChanged);
-                CoursesDetailEntities = CreateAddRemoveDetailEntitiesViewModel(x => x.Courses, x => x.StudentCourses.Where(y => y.CourseID == x.StudentID).Select(w => w.Course).ToList());
+                CoursesDetailEntities = CreateAddRemoveDetailEntitiesViewModel(x => x.Courses, x => x.StudentCourses.Where(y => y.StudentID == x.StudentID).Select(w => w.Course).ToList());
+        }
+        /// <summary>
+        /// The view model that contains a look-up collection of Schools for the corresponding navigation property in the view.
+        /// </summary>
+        public IEntitiesViewModel<School> LookUpSchools {
+            get {
+                return GetLookUpEntitiesViewModel(
+                    propertyExpression: (StudentViewModel x) => x.LookUpSchools,
+                    getRepositoryFunc: x => x.Schools);
+            }
         }
 
     public virtual AddRemoveDetailEntitiesViewModel<Student, Decimal, Course, Decimal, ISchoolDBContextUnitOfWork> CoursesDetailEntities { get; protected set; }
-
-
-        public override bool CanSave()
-        {
-            return false;
-        }
-
     }
 }

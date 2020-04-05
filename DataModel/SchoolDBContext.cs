@@ -40,6 +40,8 @@ namespace DataModel
         public virtual DbSet<School> School { get; set; }
         public virtual DbSet<Student> Student { get; set; }
         public virtual DbSet<Teacher> Teacher { get; set; }
+        public virtual DbSet<Department> Department { get; set; }
+        public virtual DbSet<Vehicule> Vehicule { get; set; }
 
         public virtual DbSet<Student_Course> Student_Course { get; set; }
 
@@ -91,6 +93,10 @@ namespace DataModel
                 .Property(e => e.StudentName)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<Student>()
+               .Property(e => e.SchoolID)
+               .HasColumnType("decimal(15, 10)");
+
             modelBuilder.Entity<Teacher>()
                 .Property(e => e.TeacherID)
                 .HasColumnType("decimal(15, 10)");
@@ -102,6 +108,25 @@ namespace DataModel
             modelBuilder.Entity<Teacher>()
                 .Property(e => e.SchoolID)
                 .HasColumnType("decimal(15, 10)");
+
+
+            modelBuilder.Entity<Department>()
+                .Property(e => e.DepartmentID)
+                .HasColumnType("decimal(15, 10)");
+
+            modelBuilder.Entity<Department>()
+               .Property(e => e.SchoolID)
+               .HasColumnType("decimal(15, 10)");
+
+            modelBuilder.Entity<Vehicule>()
+               .Property(e => e.VehiculeID)
+               .HasColumnType("decimal(15, 10)");
+
+
+            modelBuilder.Entity<Vehicule>()
+               .Property(e => e.SchoolID)
+               .HasColumnType("decimal(15, 10)");
+
 
             modelBuilder.Entity<Student_Course>()
                 .HasKey(a => new { a.StudentID, a.CourseID });

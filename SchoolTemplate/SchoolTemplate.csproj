@@ -342,10 +342,15 @@
     <Compile Include="Common\InstantFeedbackCollectionViewModel.cs" />
     <Compile Include="Common\ReadOnlyCollectionViewModel.cs" />
     <Compile Include="Common\SingleObjectViewModel.cs" />
-    <Compile Include="Localization\ViewResources.Designer.cs">
-      <AutoGen>True</AutoGen>
+    <Compile Include="Localization\SchoolDBContextResources.Designer.cs">
+      <DependentUpon>SchoolDBContextResources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Localization\ViewResources.Designer.cs">
       <DependentUpon>ViewResources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="SchoolDBContextDataModel\DesignTimeSchoolDBContextUnitOfWork.cs" />
     <Compile Include="SchoolDBContextDataModel\ISchoolDBContextUnitOfWork.cs" />
@@ -354,6 +359,8 @@
     <Compile Include="SchoolDBContextDataModel\UnitOfWorkSource.cs" />
     <Compile Include="ViewModels\Course\CourseCollectionViewModel.cs" />
     <Compile Include="ViewModels\Course\CourseViewModel.cs" />
+    <Compile Include="ViewModels\Department\DepartmentCollectionViewModel.cs" />
+    <Compile Include="ViewModels\Department\DepartmentViewModel.cs" />
     <Compile Include="ViewModels\SchoolDBContextViewModel.cs" />
     <Compile Include="ViewModels\School\SchoolCollectionViewModel.cs" />
     <Compile Include="ViewModels\School\SchoolViewModel.cs" />
@@ -361,11 +368,19 @@
     <Compile Include="ViewModels\Student\StudentViewModel.cs" />
     <Compile Include="ViewModels\Teacher\TeacherCollectionViewModel.cs" />
     <Compile Include="ViewModels\Teacher\TeacherViewModel.cs" />
+    <Compile Include="ViewModels\Vehicule\VehiculeCollectionViewModel.cs" />
+    <Compile Include="ViewModels\Vehicule\VehiculeViewModel.cs" />
     <Compile Include="Views\Course\CourseCollectionView.xaml.cs">
       <DependentUpon>CourseCollectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Course\CourseView.xaml.cs">
       <DependentUpon>CourseView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Department\DepartmentCollectionView.xaml.cs">
+      <DependentUpon>DepartmentCollectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Department\DepartmentView.xaml.cs">
+      <DependentUpon>DepartmentView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SchoolDBContextView.xaml.cs">
       <DependentUpon>SchoolDBContextView.xaml</DependentUpon>
@@ -388,6 +403,12 @@
     <Compile Include="Views\Teacher\TeacherView.xaml.cs">
       <DependentUpon>TeacherView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Vehicule\VehiculeCollectionView.xaml.cs">
+      <DependentUpon>VehiculeCollectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Vehicule\VehiculeView.xaml.cs">
+      <DependentUpon>VehiculeView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -395,11 +416,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Localization\SchoolDBContextResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SchoolDBContextResources.resx</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -421,6 +437,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Department\DepartmentCollectionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Department\DepartmentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\SchoolDBContextView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -434,18 +458,26 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Student\StudentCollectionView.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="Views\Student\StudentView.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="Views\Teacher\TeacherCollectionView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Teacher\TeacherView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Vehicule\VehiculeCollectionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Vehicule\VehiculeView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

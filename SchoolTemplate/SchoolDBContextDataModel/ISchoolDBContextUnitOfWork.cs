@@ -22,13 +22,23 @@ namespace SchoolTemplate.SchoolDBContextDataModel {
 		IRepository<Student, decimal> Students { get; }
         
         /// <summary>
+        /// The School entities repository.
+        /// </summary>
+		IRepository<School, decimal> Schools { get; }
+        
+        /// <summary>
+        /// The Department entities repository.
+        /// </summary>
+		IRepository<Department, decimal> Departments { get; }
+        
+        /// <summary>
         /// The Teacher entities repository.
         /// </summary>
 		IRepository<Teacher, decimal> Teachers { get; }
         
         /// <summary>
-        /// The School entities repository.
+        /// The Vehicule entities repository.
         /// </summary>
-		IRepository<School, decimal> Schools { get; }
+		IRepository<Vehicule, decimal> Vehicules { get; }
     }
 }

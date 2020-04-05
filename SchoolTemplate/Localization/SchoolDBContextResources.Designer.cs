@@ -106,6 +106,60 @@ namespace SchoolTemplate.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Department.
+        /// </summary>
+        public static string Department {
+            get {
+                return ResourceManager.GetString("Department", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department ID.
+        /// </summary>
+        public static string Department_DepartmentID {
+            get {
+                return ResourceManager.GetString("Department_DepartmentID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department Name.
+        /// </summary>
+        public static string Department_DepartmentName {
+            get {
+                return ResourceManager.GetString("Department_DepartmentName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string Department_Description {
+            get {
+                return ResourceManager.GetString("Department_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to School.
+        /// </summary>
+        public static string Department_School {
+            get {
+                return ResourceManager.GetString("Department_School", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Departments.
+        /// </summary>
+        public static string DepartmentPlural {
+            get {
+                return ResourceManager.GetString("DepartmentPlural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to School.
         /// </summary>
         public static string School {
@@ -156,6 +210,15 @@ namespace SchoolTemplate.Localization {
         public static string Student {
             get {
                 return ResourceManager.GetString("Student", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to School.
+        /// </summary>
+        public static string Student_School {
+            get {
+                return ResourceManager.GetString("Student_School", resourceCulture);
             }
         }
         
@@ -228,6 +291,69 @@ namespace SchoolTemplate.Localization {
         public static string TeacherPlural {
             get {
                 return ResourceManager.GetString("TeacherPlural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vehicule.
+        /// </summary>
+        public static string Vehicule {
+            get {
+                return ResourceManager.GetString("Vehicule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Driver Name.
+        /// </summary>
+        public static string Vehicule_DriverName {
+            get {
+                return ResourceManager.GetString("Vehicule_DriverName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to School.
+        /// </summary>
+        public static string Vehicule_School {
+            get {
+                return ResourceManager.GetString("Vehicule_School", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vehicule ID.
+        /// </summary>
+        public static string Vehicule_VehiculeID {
+            get {
+                return ResourceManager.GetString("Vehicule_VehiculeID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vehicule Name.
+        /// </summary>
+        public static string Vehicule_VehiculeName {
+            get {
+                return ResourceManager.GetString("Vehicule_VehiculeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vehicule Type.
+        /// </summary>
+        public static string Vehicule_VehiculeType {
+            get {
+                return ResourceManager.GetString("Vehicule_VehiculeType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vehicules.
+        /// </summary>
+        public static string VehiculePlural {
+            get {
+                return ResourceManager.GetString("VehiculePlural", resourceCulture);
             }
         }
     }

@@ -87,19 +87,7 @@
     <data name="Student_StudentName" xml:space="preserve">
     <value>Student Name</value>
   </data>
-    <data name="Teacher" xml:space="preserve">
-    <value>Teacher</value>
-  </data>
-    <data name="TeacherPlural" xml:space="preserve">
-    <value>Teachers</value>
-  </data>
-    <data name="Teacher_TeacherID" xml:space="preserve">
-    <value>Teacher ID</value>
-  </data>
-    <data name="Teacher_TeacherName" xml:space="preserve">
-    <value>Teacher Name</value>
-  </data>
-    <data name="Teacher_School" xml:space="preserve">
+    <data name="Student_School" xml:space="preserve">
     <value>School</value>
   </data>
     <data name="School" xml:space="preserve">
@@ -116,5 +104,59 @@
   </data>
     <data name="School_Director" xml:space="preserve">
     <value>Director</value>
+  </data>
+    <data name="Department" xml:space="preserve">
+    <value>Department</value>
+  </data>
+    <data name="DepartmentPlural" xml:space="preserve">
+    <value>Departments</value>
+  </data>
+    <data name="Department_DepartmentID" xml:space="preserve">
+    <value>Department ID</value>
+  </data>
+    <data name="Department_DepartmentName" xml:space="preserve">
+    <value>Department Name</value>
+  </data>
+    <data name="Department_Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+    <data name="Department_School" xml:space="preserve">
+    <value>School</value>
+  </data>
+    <data name="Teacher" xml:space="preserve">
+    <value>Teacher</value>
+  </data>
+    <data name="TeacherPlural" xml:space="preserve">
+    <value>Teachers</value>
+  </data>
+    <data name="Teacher_TeacherID" xml:space="preserve">
+    <value>Teacher ID</value>
+  </data>
+    <data name="Teacher_TeacherName" xml:space="preserve">
+    <value>Teacher Name</value>
+  </data>
+    <data name="Teacher_School" xml:space="preserve">
+    <value>School</value>
+  </data>
+    <data name="Vehicule" xml:space="preserve">
+    <value>Vehicule</value>
+  </data>
+    <data name="VehiculePlural" xml:space="preserve">
+    <value>Vehicules</value>
+  </data>
+    <data name="Vehicule_VehiculeID" xml:space="preserve">
+    <value>Vehicule ID</value>
+  </data>
+    <data name="Vehicule_VehiculeName" xml:space="preserve">
+    <value>Vehicule Name</value>
+  </data>
+    <data name="Vehicule_VehiculeType" xml:space="preserve">
+    <value>Vehicule Type</value>
+  </data>
+    <data name="Vehicule_DriverName" xml:space="preserve">
+    <value>Driver Name</value>
+  </data>
+    <data name="Vehicule_School" xml:space="preserve">
+    <value>School</value>
   </data>
 </root>

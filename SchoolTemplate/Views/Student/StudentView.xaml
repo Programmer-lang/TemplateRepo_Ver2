@@ -43,6 +43,15 @@
         <dxlc:LayoutControl x:Name="layoutControl" Style="{StaticResource EntityView.LayoutControl}">
             <dxlc:DataLayoutItem x:Name="layoutItemStudentID" Binding="{Binding Entity.StudentID, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsPrimaryKeyReadOnly, RelativeSource={RelativeSource AncestorType={x:Type dxlc:LayoutControl}}}" />
             <dxlc:DataLayoutItem x:Name="layoutItemStudentName" Binding="{Binding Entity.StudentName, UpdateSourceTrigger=PropertyChanged}" />
+            <dxlc:DataLayoutItem x:Name="layoutItemSchool" Binding="{Binding Entity.School, Mode=OneTime}">
+                <dxg:LookUpEdit Style="{StaticResource EntityView.LookUpEdit}" DataContext="{Binding ElementName=layoutControl, Path=DataContext}" EditValue="{Binding Entity.SchoolID, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnSourceUpdated=True}" ItemsSource="{Binding LookUpSchools.Entities}" ValueMember="SchoolID" DisplayMember="SchoolName">
+                    <dxg:LookUpEdit.PopupContentTemplate>
+                        <ControlTemplate TargetType="ContentControl">
+                            <dxg:GridControl x:Name="PART_GridControl" ShowBorder="False" ShowLoadingPanel="{Binding LookUpSchools.IsLoading}" />
+                        </ControlTemplate>
+                    </dxg:LookUpEdit.PopupContentTemplate>
+                </dxg:LookUpEdit>
+            </dxlc:DataLayoutItem>
             <dxlc:LayoutGroup x:Name="Tabs" View="Tabs" MinHeight="250">
                 <DockPanel Style="{StaticResource EntityView.DetailManyToMany.Container}" DataContext="{Binding CoursesDetailEntities}" dxlc:LayoutControl.TabHeader="Course">
                     <dxb:ToolBarControl DockPanel.Dock="Top">
