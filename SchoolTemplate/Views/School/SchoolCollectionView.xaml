@@ -19,12 +19,76 @@
     <UserControl.Resources>
         <ResourceDictionary Source="../../Resources/CollectionViewResources.xaml" />
     </UserControl.Resources>
+    <dxmvvm:Interaction.Behaviors>
+        <dxmvvm:EventToCommand EventName="Initialized" Command="{Binding OnInitializedCommand}"/>
+    </dxmvvm:Interaction.Behaviors>
     <DockPanel Style="{StaticResource CollectionView.RootContainer}">
-        <dxr:RibbonControl Style="{StaticResource CollectionView.RibbonControl}" DockPanel.Dock="Top">
+        <dxr:RibbonControl Style="{StaticResource CollectionView.RibbonControl}" DockPanel.Dock="Top"
+                            ApplicationButtonSmallIcon="{dx:DXImage Image=Home_16x16.png}" 
+                            ApplicationButtonLargeIcon="{dx:DXImage Image=Home_32x32.png}" 
+                            ApplicationButtonText="File" 
+                            PageCategoryAlignment="Right"
+                            RibbonStyle="Office2010"
+                           >
+
+            <dxr:RibbonControl.ApplicationMenu>
+                <dxr:ApplicationMenu Visibility="Visible" RightPaneWidth="200" ShowRightPane="True">
+                    <dxr:ApplicationMenu.ItemLinks>
+                        <dxb:BarButtonItemLink BarItemName="btnNew"/>
+                    </dxr:ApplicationMenu.ItemLinks>
+
+                    <dxr:ApplicationMenu.RightPane>
+                        <Border Background="White" BorderThickness="1,0,0,0" BorderBrush="LightGray">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Border BorderThickness="0,0,0,1" BorderBrush="LightGray">
+                                    <Label>Recent Documents</Label>
+                                </Border>
+
+                                <ListView x:Name="myListView" ItemsSource="{Binding MenuIDHistory}"  SelectedItem="{Binding SelectedMenuID,Mode=TwoWay}">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Name="tbAppNum" Text="{Binding ID , StringFormat={}{0:G29}}"  />
+                                                <TextBlock Text="  " />
+                                                <TextBlock Text="{Binding Note}" />
+                                            </StackPanel>
+
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+
+                                    <dxmvvm:Interaction.Behaviors>
+                                        <dxmvvm:EventToCommand Command="{Binding EditIDCommand}"  EventName="MouseDoubleClick" />
+
+                                    </dxmvvm:Interaction.Behaviors>
+
+                                </ListView>
+                            </Grid>
+
+                        </Border>
+                    </dxr:ApplicationMenu.RightPane>
+
+                    <!--<dxr:ApplicationMenu.BottomPane>
+                        <StackPanel Orientation="Horizontal">
+
+                            <Button Content="Exit" Width="100" />
+
+                        </StackPanel>
+                    </dxr:ApplicationMenu.BottomPane>-->
+
+                </dxr:ApplicationMenu>
+            </dxr:RibbonControl.ApplicationMenu>
+            
+            
+
+
             <dxr:RibbonDefaultPageCategory>
                 <dxr:RibbonPage Style="{StaticResource CollectionView.RibbonPage}">
                     <dxr:RibbonPageGroup Style="{StaticResource CollectionView.RibbonPageGroup.Main}">
-                        <dxb:BarButtonItem Style="{StaticResource CollectionView.Command.New}" />
+                        <dxb:BarButtonItem Name="btnNew" Style="{StaticResource CollectionView.Command.New}" />
                         <dxb:BarButtonItem Style="{StaticResource CollectionView.Command.Edit}" />
                         <dxb:BarButtonItem Style="{StaticResource CollectionView.Command.Delete}" />
                         <dxb:BarButtonItem Style="{StaticResource CollectionView.Command.Save}" />

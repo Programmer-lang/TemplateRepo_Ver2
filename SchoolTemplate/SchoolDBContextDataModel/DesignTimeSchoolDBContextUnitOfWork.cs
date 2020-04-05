@@ -41,5 +41,10 @@ namespace SchoolTemplate.SchoolDBContextDataModel {
         IRepository<Vehicule, decimal> ISchoolDBContextUnitOfWork.Vehicules {
             get { return GetRepository((Vehicule x) => x.VehiculeID); }
         }
+
+        public List<MenuIDHistory> GetMenuIDHistoryData(string p_sQuery)
+        {
+            return null;
+        }
     }
 }

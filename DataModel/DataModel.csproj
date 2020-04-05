@@ -159,6 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Course.cs" />
+    <Compile Include="MenuIDHistory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="School.cs" />
     <Compile Include="SchoolDBContext.cs" />

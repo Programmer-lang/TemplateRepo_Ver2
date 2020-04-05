@@ -42,11 +42,16 @@ namespace DataModel
         public virtual DbSet<Teacher> Teacher { get; set; }
         public virtual DbSet<Department> Department { get; set; }
         public virtual DbSet<Vehicule> Vehicule { get; set; }
-
+        public virtual DbSet<MenuIDHistory> MenuIDHistory { get; set; }
         public virtual DbSet<Student_Course> Student_Course { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<MenuIDHistory>()
+               .Property(e => e.ID)
+               .HasColumnType("decimal(15, 10)");
+
             modelBuilder.Entity<Course>()
                 .Property(e => e.CourseID)
                 .HasColumnType("decimal(15, 10)");

@@ -14,6 +14,9 @@ namespace SchoolTemplate.SchoolDBContextDataModel {
     /// </summary>
     public static class UnitOfWorkSource {
 
+
+
+
         /// <summary>
         /// Returns the IUnitOfWorkFactory implementation based on the current mode (run-time or design-time).
         /// </summary>

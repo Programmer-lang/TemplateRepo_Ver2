@@ -11,6 +11,8 @@ namespace SchoolTemplate.SchoolDBContextDataModel {
     /// </summary>
     public interface ISchoolDBContextUnitOfWork : IUnitOfWork {
         
+        
+
         /// <summary>
         /// The Course entities repository.
         /// </summary>
@@ -40,5 +42,7 @@ namespace SchoolTemplate.SchoolDBContextDataModel {
         /// The Vehicule entities repository.
         /// </summary>
 		IRepository<Vehicule, decimal> Vehicules { get; }
+
+         List<MenuIDHistory> GetMenuIDHistoryData(string p_sQuery);
     }
 }

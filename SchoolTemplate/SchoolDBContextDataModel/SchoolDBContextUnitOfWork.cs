@@ -1,6 +1,7 @@
 ﻿using DataModel;
 using DevExpress.Mvvm.DataModel;
 using DevExpress.Mvvm.DataModel.EFCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,11 @@ namespace SchoolTemplate.SchoolDBContextDataModel {
 
         public SchoolDBContextUnitOfWork(Func<SchoolDBContext> contextFactory)
             : base(contextFactory) {
+        }
+
+        public List<MenuIDHistory> GetMenuIDHistoryData(string p_sQuery)
+        {
+           return Context.MenuIDHistory.FromSqlRaw(p_sQuery).ToList();
         }
 
         IRepository<Course, decimal> ISchoolDBContextUnitOfWork.Courses {

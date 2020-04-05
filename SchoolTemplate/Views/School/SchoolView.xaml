@@ -21,6 +21,8 @@
     <UserControl.Resources>
         <ResourceDictionary Source="../../Resources/EntityViewResources.xaml" />
     </UserControl.Resources>
+    
+
     <DockPanel Style="{StaticResource EntityView.RootContainer}">
         <dxr:RibbonControl DockPanel.Dock="Top" Style="{StaticResource EntityView.RibbonControl}">
             <dxr:RibbonDefaultPageCategory>
@@ -69,6 +71,7 @@
             <dxmvvm:Interaction.Behaviors>
                 <dxmvvm:LayoutSerializationService Name="RootLayoutSerializationService" />
                 <dxmvvm:CurrentWindowSerializationBehavior />
+                
             </dxmvvm:Interaction.Behaviors>
 
             <dxdo:DockLayoutManager MDIMergeStyle="WhenLoadedOrChildActivated">

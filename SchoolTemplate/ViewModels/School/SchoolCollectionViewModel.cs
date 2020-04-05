@@ -7,6 +7,7 @@ using SchoolTemplate.SchoolDBContextDataModel;
 using SchoolTemplate.Common;
 using DataModel;
 using DevExpress.Mvvm;
+using System.Collections.ObjectModel;
 
 namespace SchoolTemplate.ViewModels {
 
@@ -14,7 +15,8 @@ namespace SchoolTemplate.ViewModels {
     /// Represents the Schools collection view model.
     /// </summary>
     public partial class SchoolCollectionViewModel : CollectionViewModel<School, decimal, ISchoolDBContextUnitOfWork> {
-
+        public ObservableCollection<MenuIDHistory> MenuIDHistory { get;  set; }
+        public virtual MenuIDHistory SelectedMenuID { get; set; }
         /// <summary>
         /// Creates a new instance of SchoolCollectionViewModel as a POCO view model.
         /// </summary>
@@ -40,5 +42,33 @@ namespace SchoolTemplate.ViewModels {
 
 
         }
+
+        public void OnInitialized()
+        {
+
+            try
+            {
+
+
+                MenuIDHistory = new ObservableCollection<MenuIDHistory>(UnitOfWorkSource.GetUnitOfWorkFactory().CreateUnitOfWork().GetMenuIDHistoryData("usp_GetData " + "Ali"));
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBoxService.Show(ex.Message);
+
+            }
+        }
+
+
+        public void EditID()
+        {
+            var service = this.GetService<IDocumentManagerService>();
+            service.ShowExistingEntityDocument<School, decimal>(this, SelectedMenuID.ID);
+
+            SelectedMenuID = null;
+        }
+
     }
 }

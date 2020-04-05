@@ -20,7 +20,8 @@ namespace SchoolTemplate.ViewModels {
     public partial class SchoolViewModel : SingleObjectViewModel<School, decimal, ISchoolDBContextUnitOfWork> {
 
 
-      
+        public ObservableCollection<MenuIDHistory> MenuIDHistory { get; set; }
+
         public virtual SchoolDBContextModuleDescription ActiveModule { get; protected set; }
         
         public virtual SchoolDBContextModuleDescription SelectedModule { get; set; }
@@ -48,25 +49,26 @@ namespace SchoolTemplate.ViewModels {
 
 
                 case "Teachers":
-                    var doc = service.CreateDocument(SelectedModule.DocumentType, SchoolTeachersDetails, this);
+                    var doc = service.CreateDocument(SelectedModule.DocumentType, SchoolTeachersDetails);
                     doc.Title = "Teachers";
-
+                    doc.Show();
                     break;
                 case "Students":
-                    var docstud = service.CreateDocument(SelectedModule.DocumentType, SchoolStudentsDetails, this);
+                    var docstud = service.CreateDocument(SelectedModule.DocumentType, SchoolStudentsDetails);
                     docstud.Title = "Students";
-
+                    docstud.Show();
                     break;
 
                 case "Departments":
-                    var docDep = service.CreateDocument(SelectedModule.DocumentType, SchoolDepartmentsDetails, this);
+                    var docDep = service.CreateDocument(SelectedModule.DocumentType, SchoolDepartmentsDetails);
                     docDep.Title = "Departments";
-
+                    docDep.Show();
                     break;
 
                 case "Vehicules":
-                    var docVeh = service.CreateDocument(SelectedModule.DocumentType, SchoolVehiculesDetails, this);
+                    var docVeh = service.CreateDocument(SelectedModule.DocumentType, SchoolVehiculesDetails);
                     docVeh.Title = "Vehicules";
+                    docVeh.Show();
                     break;
             }
             
@@ -196,6 +198,9 @@ public static SchoolViewModel Create(IUnitOfWorkFactory<ISchoolDBContextUnitOfWo
                     navigationExpression: x => x.School);
             }
         }
+
+
+       
 
         //public  class SchoolModuleDescription : ModuleDescription<SingleObjectViewModel<ISchoolType, decimal, IUnitOfWork>>
         //{
