@@ -48,21 +48,25 @@ namespace SchoolTemplate.ViewModels {
 
 
                 case "Teachers":
-                    service.CreateDocument(SelectedModule.DocumentType, SchoolTeachersDetails, this);
-
+                    var doc = service.CreateDocument(SelectedModule.DocumentType, SchoolTeachersDetails, this);
+                    doc.Title = "Teachers";
 
                     break;
                 case "Students":
-                    service.CreateDocument(SelectedModule.DocumentType, SchoolStudentsDetails, this);
+                    var docstud = service.CreateDocument(SelectedModule.DocumentType, SchoolStudentsDetails, this);
+                    docstud.Title = "Students";
 
                     break;
+
                 case "Departments":
-                    service.CreateDocument(SelectedModule.DocumentType, SchoolDepartmentsDetails, this);
+                    var docDep = service.CreateDocument(SelectedModule.DocumentType, SchoolDepartmentsDetails, this);
+                    docDep.Title = "Departments";
 
                     break;
-                case "Vehicules":
-                    service.CreateDocument(SelectedModule.DocumentType, SchoolVehiculesDetails, this);
 
+                case "Vehicules":
+                    var docVeh = service.CreateDocument(SelectedModule.DocumentType, SchoolVehiculesDetails, this);
+                    docVeh.Title = "Vehicules";
                     break;
             }
             
