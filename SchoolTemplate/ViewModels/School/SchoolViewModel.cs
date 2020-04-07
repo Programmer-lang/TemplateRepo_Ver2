@@ -11,6 +11,7 @@ using SchoolTemplate.SchoolDBContextDataModel;
 using SchoolTemplate.Common;
 using DataModel;
 using SchoolTemplate.Localization;
+using DevExpress.XtraReports.UI;
 
 namespace SchoolTemplate.ViewModels {
 
@@ -49,12 +50,12 @@ namespace SchoolTemplate.ViewModels {
 
 
                 case "Teachers":
-                    var doc = service.CreateDocument(SelectedModule.DocumentType, SchoolTeachersDetails);
+                    var doc = service.CreateDocument(SelectedModule.DocumentType, Entity.SchoolID, this);
                     doc.Title = "Teachers";
                     doc.Show();
                     break;
                 case "Students":
-                    var docstud = service.CreateDocument(SelectedModule.DocumentType, SchoolStudentsDetails);
+                    var docstud = service.CreateDocument(SelectedModule.DocumentType,null, this);
                     docstud.Title = "Students";
                     docstud.Show();
                     break;
@@ -200,7 +201,30 @@ public static SchoolViewModel Create(IUnitOfWorkFactory<ISchoolDBContextUnitOfWo
         }
 
 
-       
+      public void Print()
+        {
+            try
+            {
+
+            
+                using(XtraReport report1 = new XtraReport())
+                {
+
+                    report1.ShowRibbonPreviewDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBoxService.Show(ex.Message);
+            }
+        }
+
+
+
+
+
+
 
         //public  class SchoolModuleDescription : ModuleDescription<SingleObjectViewModel<ISchoolType, decimal, IUnitOfWork>>
         //{

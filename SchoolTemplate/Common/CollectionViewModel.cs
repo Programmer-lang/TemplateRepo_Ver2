@@ -22,6 +22,8 @@ namespace SchoolTemplate.Common {
         where TEntity : class
         where TUnitOfWork : IUnitOfWork {
 
+
+       
         /// <summary>
         /// Creates a new instance of CollectionViewModel as a POCO view model.
         /// </summary>

@@ -39,6 +39,7 @@
                         <dxb:BarCheckItem Style="{StaticResource EntityView.Command.Customize}" IsChecked="{Binding IsCustomization, ElementName=layoutControl}" />
                         <dxb:BarButtonItem Style="{StaticResource EntityView.Command.SaveLayout}" />
                         <dxb:BarButtonItem Style="{StaticResource EntityView.Command.ResetLayout}" />
+                        <dxb:BarButtonItem Content="print" Command="{Binding PrintCommand}"/>
                     </dxr:RibbonPageGroup>
                 </dxr:RibbonPage>
             </dxr:RibbonDefaultPageCategory>

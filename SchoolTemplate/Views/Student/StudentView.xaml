@@ -78,5 +78,7 @@
                 </DockPanel>
             </dxlc:LayoutGroup>
         </dxlc:LayoutControl>
+    
+    
     </DockPanel>
 </UserControl>

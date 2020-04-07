@@ -17,9 +17,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignHeight="400" d:DesignWidth="600" DataContext="{dxmvvm:ViewModelSource viewModel:StudentCollectionViewModel}">
     <UserControl.Resources>
-        <ResourceDictionary Source="../../Resources/CollectionViewResources.xaml" />
+        
+
+        <ResourceDictionary  Source="../../Resources/EntityViewResources.xaml" />
+        
     </UserControl.Resources>
     <DockPanel Style="{StaticResource CollectionView.RootContainer}">
+        <DockPanel.Resources>
+            <view:con x:Name="con1" x:Key="con1"/>
+        </DockPanel.Resources>
         <dxr:RibbonControl Style="{StaticResource CollectionView.RibbonControl}" DockPanel.Dock="Top">
             <dxr:RibbonDefaultPageCategory>
                 <dxr:RibbonPage Style="{StaticResource CollectionView.RibbonPage}">
@@ -27,7 +33,7 @@
                         <dxb:BarButtonItem Style="{StaticResource CollectionView.Command.New}" />
                         <dxb:BarButtonItem Style="{StaticResource CollectionView.Command.Edit}" />
                         <dxb:BarButtonItem Style="{StaticResource CollectionView.Command.Delete}" />
-                        <dxb:BarButtonItem Style="{StaticResource CollectionView.Command.Save}" />
+                        <dxb:BarButtonItem Style="{StaticResource CollectionView.Command.Save}" IsVisible="True"  Command="{Binding DataContext.SaveAllCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" />
                         <dxb:BarButtonItem Style="{StaticResource CollectionView.Command.Reset}" />
                         <dxb:BarButtonItem Style="{StaticResource CollectionView.Command.Refresh}" />
                         <dxb:BarSplitButtonItem Style="{StaticResource CollectionView.Command.Reports}">
@@ -44,31 +50,76 @@
                 <dxb:BarStaticItem Style="{StaticResource CollectionView.Command.Count}" />
             </dxr:RibbonStatusBarControl.LeftItems>
         </dxr:RibbonStatusBarControl>
-        <dxg:GridControl x:Name="gridControl" Style="{StaticResource CollectionView.GridControl.Editable}">
-            <dxg:GridControl.View>
-                <dxg:TableView Style="{StaticResource CollectionView.TableView}">
-                    <dxmvvm:Interaction.Behaviors>
-                        <dxrudex:GridReportManagerService x:Name="StudentCollectionViewReportService" />
-                    </dxmvvm:Interaction.Behaviors>
-                    <dxg:TableView.RowCellMenuCustomizations>
-                        <dxb:BarButtonItem Style="{StaticResource CollectionView.GridCommand.New}" />
-                        <dxb:BarButtonItem Style="{StaticResource CollectionView.GridCommand.Edit}" />
-                        <dxb:BarButtonItem Style="{StaticResource CollectionView.GridCommand.Delete}" />
-                        <dxb:BarButtonItem Style="{StaticResource CollectionView.GridCommand.Refresh}" />
-                    </dxg:TableView.RowCellMenuCustomizations>
-                </dxg:TableView>
-            </dxg:GridControl.View>
-            <dxg:GridControl.Columns>
-                <dxg:GridColumn IsSmart="True" FieldName="StudentID" />
-                <dxg:GridColumn IsSmart="True" FieldName="StudentName" />
-                <dxg:GridColumn FieldName="School.SchoolName" Header="{x:Static localization:SchoolDBContextResources.Student_School}" ReadOnly="True" />
-            </dxg:GridControl.Columns>
-            <dxg:GridControl.TotalSummary>
-                <dxg:GridSummaryItem SummaryType="Count" Alignment="Right" />
-            </dxg:GridControl.TotalSummary>
-            <dxg:GridControl.GroupSummary>
-                <dxg:GridSummaryItem SummaryType="Count" />
-            </dxg:GridControl.GroupSummary>
-        </dxg:GridControl>
+      
+        
+        <dxlc:LayoutControl x:Name="layoutControl1" Style="{StaticResource EntityView.LayoutControl}" >
+
+            <dxg:GridControl x:Name="gridControl" Style="{StaticResource CollectionView.GridControl.Editable}">
+                <dxg:GridControl.View>
+                    <dxg:TableView Style="{StaticResource CollectionView.TableView}" AllowEditing="True">
+                        <dxmvvm:Interaction.Behaviors>
+                            <dxrudex:GridReportManagerService x:Name="StudentCollectionViewReportService" />
+                        </dxmvvm:Interaction.Behaviors>
+                        <dxg:TableView.RowCellMenuCustomizations>
+                            <dxb:BarButtonItem Style="{StaticResource CollectionView.GridCommand.New}" />
+                            <dxb:BarButtonItem Style="{StaticResource CollectionView.GridCommand.Edit}" />
+                            <dxb:BarButtonItem Style="{StaticResource CollectionView.GridCommand.Delete}" />
+                            <dxb:BarButtonItem Style="{StaticResource CollectionView.GridCommand.Refresh}" />
+                        </dxg:TableView.RowCellMenuCustomizations>
+                    </dxg:TableView>
+                </dxg:GridControl.View>
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn IsSmart="True" FieldName="StudentID" />
+                    <dxg:GridColumn IsSmart="True" FieldName="StudentName" />
+                    <dxg:GridColumn FieldName="School.SchoolName" Header="{x:Static localization:SchoolDBContextResources.Student_School}" ReadOnly="True" />
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.TotalSummary>
+                    <dxg:GridSummaryItem SummaryType="Count" Alignment="Right" />
+                </dxg:GridControl.TotalSummary>
+                <dxg:GridControl.GroupSummary>
+                    <dxg:GridSummaryItem SummaryType="Count" />
+                </dxg:GridControl.GroupSummary>
+            </dxg:GridControl>
+
+            <dxlc:LayoutControl x:Name="layoutControl" Style="{StaticResource EntityView.LayoutControl}" DataContext="{Binding ElementName=gridControl}">
+                <dxlc:DataLayoutItem x:Name="layoutItemStudentID" Binding="{Binding Path=CurrentItem.StudentID, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsPrimaryKeyReadOnly, RelativeSource={RelativeSource AncestorType={x:Type dxlc:LayoutControl}}}" />
+                <dxlc:DataLayoutItem x:Name="layoutItemStudentName" Binding="{Binding CurrentItem.StudentName,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <dxlc:DataLayoutItem x:Name="layoutItemSchool"  Binding="{Binding CurrentItem.School, Mode=OneTime}">
+                    <dxg:LookUpEdit Style="{StaticResource EntityView.LookUpEdit}" DataContext="{Binding ElementName=layoutControl, Path=DataContext}" EditValue="{Binding CurrentItem.SchoolID, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnSourceUpdated=True}" ItemsSource="{Binding LookUpSchools.Entities}" ValueMember="SchoolID" DisplayMember="SchoolName">
+                    <dxg:LookUpEdit.PopupContentTemplate>
+                        <ControlTemplate TargetType="ContentControl">
+                            <dxg:GridControl x:Name="PART_GridControl" ShowBorder="False" ShowLoadingPanel="{Binding LookUpSchools.IsLoading}" />
+                        </ControlTemplate>
+                    </dxg:LookUpEdit.PopupContentTemplate>
+                </dxg:LookUpEdit>
+            </dxlc:DataLayoutItem>
+            <dxlc:LayoutGroup x:Name="Tabs" View="Tabs" MinHeight="250">
+                <DockPanel Style="{StaticResource EntityView.DetailManyToMany.Container}" DataContext="{Binding CoursesDetailEntities}" dxlc:LayoutControl.TabHeader="Course">
+                    <dxb:ToolBarControl DockPanel.Dock="Top">
+                        <dxb:BarButtonItem Style="{StaticResource EntityView.DetailManyToMany.Command.New}" />
+                        <dxb:BarButtonItem Style="{StaticResource EntityView.DetailManyToMany.Command.Edit}" />
+                        <dxb:BarButtonItem Style="{StaticResource EntityView.DetailManyToMany.Command.Add}" />
+                        <dxb:BarButtonItem Style="{StaticResource EntityView.DetailManyToMany.Command.Delete}" />
+                    </dxb:ToolBarControl>
+                    <dxg:GridControl x:Name="CoursesDetailEntitiesGrid" dx:DXSerializer.SerializationID="CoursesDetailEntitiesGrid" Style="{StaticResource EntityView.DetailManyToMany.GridControl}">
+                        <dxg:GridControl.View>
+                            <dxg:TableView Style="{StaticResource EntityView.DetailManyToMany.TableView}">
+                                <dxg:TableView.RowCellMenuCustomizations>
+                                    <dxb:BarButtonItem Style="{StaticResource EntityView.DetailManyToMany.GridCommand.New}" />
+                                    <dxb:BarButtonItem Style="{StaticResource EntityView.DetailManyToMany.GridCommand.Edit}" />
+                                    <dxb:BarButtonItem Style="{StaticResource EntityView.DetailManyToMany.GridCommand.Add}" />
+                                    <dxb:BarButtonItem Style="{StaticResource EntityView.DetailManyToMany.GridCommand.Delete}" />
+                                </dxg:TableView.RowCellMenuCustomizations>
+                            </dxg:TableView>
+                        </dxg:GridControl.View>
+                        <dxg:GridControl.TotalSummary>
+                            <dxg:GridSummaryItem SummaryType="Count" Alignment="Right" />
+                        </dxg:GridControl.TotalSummary>
+                    </dxg:GridControl>
+                </DockPanel>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+
+        </dxlc:LayoutControl>
     </DockPanel>
 </UserControl>
