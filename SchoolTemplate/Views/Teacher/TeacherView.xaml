@@ -19,7 +19,7 @@
     <UserControl.Resources>
         <ResourceDictionary Source="../../Resources/EntityViewResources.xaml" />
     </UserControl.Resources>
-    <DockPanel Style="{StaticResource EntityView.RootContainer}">
+    <. Style="{StaticResource EntityView.RootContainer}">
         <dxr:RibbonControl DockPanel.Dock="Top" Style="{StaticResource EntityView.RibbonControl}">
             <dxr:RibbonDefaultPageCategory>
                 <dxr:RibbonPage Style="{StaticResource EntityView.RibbonPage}">
@@ -87,5 +87,7 @@
                 </DockPanel>
             </dxlc:LayoutGroup>
         </dxlc:LayoutControl>
-    </DockPanel>
+    
+    
+    </>
 </UserControl>

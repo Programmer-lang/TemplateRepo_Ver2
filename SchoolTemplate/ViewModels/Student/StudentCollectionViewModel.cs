@@ -17,7 +17,7 @@ namespace SchoolTemplate.ViewModels {
     public partial class StudentCollectionViewModel : CollectionViewModel<Student, decimal, ISchoolDBContextUnitOfWork>
     {
 
-        public override Expression<Func<Student, bool>> FilterExpression { get ; set; } 
+       // public override Expression<Func<Student, bool>> FilterExpression { get ; set; } 
 
         //  public object ParentViewModel { get; set; }
 

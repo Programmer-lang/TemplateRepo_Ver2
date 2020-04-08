@@ -7,7 +7,7 @@ namespace DataModel
     using Microsoft.EntityFrameworkCore;
 
     
-    public partial class Department : ISchoolType
+    public partial class Department 
     {
       
 

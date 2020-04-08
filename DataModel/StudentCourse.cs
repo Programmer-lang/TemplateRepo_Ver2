@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace DataModel
 {
     //[Table("dbo.Student_Course")]
-    public  class Student_Course : ISchoolType
+    public  class Student_Course 
     {
         public decimal StudentID { get; set; }
         public decimal CourseID { get; set; }

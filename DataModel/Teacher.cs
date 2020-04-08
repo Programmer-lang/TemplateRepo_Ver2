@@ -2,16 +2,17 @@ namespace DataModel
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using Microsoft.EntityFrameworkCore;
 
     //[Table("dbo.Teacher")]
-    public partial class Teacher : ISchoolType
-    {
+    public partial class Teacher
+    { 
         public Teacher()
         {
-            Courses = new HashSet<Course>();
+            Courses = new ObservableCollection<Course>();
         }
 
         public decimal TeacherID { get; set; }
@@ -23,7 +24,7 @@ namespace DataModel
 
         public virtual School School { get; set; }
 
-        public virtual ICollection<Course> Courses { get; set; }
+        public virtual ObservableCollection<Course> Courses { get; set; }
 
         
     }

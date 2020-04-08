@@ -1,6 +1,8 @@
 namespace DataModel
 {
     using Microsoft.EntityFrameworkCore;
+    using System.ComponentModel;
+    using System.Runtime.CompilerServices;
 
     public partial class SchoolDBContext : DbContext
     {
@@ -138,8 +140,17 @@ namespace DataModel
         }
     }
 
-    public interface ISchoolType
-    {
+    //public interface ISchoolType
+    //{
 
+    //}
+
+    public class EntityBase: INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

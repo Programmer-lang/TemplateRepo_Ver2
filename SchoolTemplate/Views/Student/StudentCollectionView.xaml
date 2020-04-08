@@ -23,9 +23,9 @@
         
     </UserControl.Resources>
     <DockPanel Style="{StaticResource CollectionView.RootContainer}">
-        <DockPanel.Resources>
+        <!--<DockPanel.Resources>
             <view:con x:Name="con1" x:Key="con1"/>
-        </DockPanel.Resources>
+        </DockPanel.Resources>-->
         <dxr:RibbonControl Style="{StaticResource CollectionView.RibbonControl}" DockPanel.Dock="Top">
             <dxr:RibbonDefaultPageCategory>
                 <dxr:RibbonPage Style="{StaticResource CollectionView.RibbonPage}">
@@ -56,7 +56,7 @@
 
             <dxg:GridControl x:Name="gridControl" Style="{StaticResource CollectionView.GridControl.Editable}">
                 <dxg:GridControl.View>
-                    <dxg:TableView Style="{StaticResource CollectionView.TableView}" AllowEditing="True">
+                    <dxg:TableView Style="{StaticResource CollectionView.TableView}" AllowEditing="True" EnableImmediatePosting="True">
                         <dxmvvm:Interaction.Behaviors>
                             <dxrudex:GridReportManagerService x:Name="StudentCollectionViewReportService" />
                         </dxmvvm:Interaction.Behaviors>
@@ -81,10 +81,10 @@
                 </dxg:GridControl.GroupSummary>
             </dxg:GridControl>
 
-            <dxlc:LayoutControl x:Name="layoutControl" Style="{StaticResource EntityView.LayoutControl}" DataContext="{Binding ElementName=gridControl}">
+            <dxlc:LayoutControl x:Name="layoutControl" Style="{StaticResource EntityView.LayoutControl}" DataContext="{Binding ElementName=gridControl}" >
                 <dxlc:DataLayoutItem x:Name="layoutItemStudentID" Binding="{Binding Path=CurrentItem.StudentID, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsPrimaryKeyReadOnly, RelativeSource={RelativeSource AncestorType={x:Type dxlc:LayoutControl}}}" />
-                <dxlc:DataLayoutItem x:Name="layoutItemStudentName" Binding="{Binding CurrentItem.StudentName,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                <dxlc:DataLayoutItem x:Name="layoutItemSchool"  Binding="{Binding CurrentItem.School, Mode=OneTime}">
+                <dxlc:DataLayoutItem x:Name="layoutItemStudentName" Binding="{Binding CurrentItem.StudentName,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False"/>
+                <!--<dxlc:DataLayoutItem x:Name="layoutItemSchool"  Binding="{Binding CurrentItem.School, Mode=OneTime}">
                     <dxg:LookUpEdit Style="{StaticResource EntityView.LookUpEdit}" DataContext="{Binding ElementName=layoutControl, Path=DataContext}" EditValue="{Binding CurrentItem.SchoolID, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnSourceUpdated=True}" ItemsSource="{Binding LookUpSchools.Entities}" ValueMember="SchoolID" DisplayMember="SchoolName">
                     <dxg:LookUpEdit.PopupContentTemplate>
                         <ControlTemplate TargetType="ContentControl">
@@ -92,7 +92,7 @@
                         </ControlTemplate>
                     </dxg:LookUpEdit.PopupContentTemplate>
                 </dxg:LookUpEdit>
-            </dxlc:DataLayoutItem>
+            </dxlc:DataLayoutItem>-->
             <dxlc:LayoutGroup x:Name="Tabs" View="Tabs" MinHeight="250">
                 <DockPanel Style="{StaticResource EntityView.DetailManyToMany.Container}" DataContext="{Binding CoursesDetailEntities}" dxlc:LayoutControl.TabHeader="Course">
                     <dxb:ToolBarControl DockPanel.Dock="Top">

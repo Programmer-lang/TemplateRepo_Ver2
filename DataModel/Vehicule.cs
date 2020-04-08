@@ -7,7 +7,7 @@ namespace DataModel
     using Microsoft.EntityFrameworkCore;
 
     //[Table("dbo.Teacher")]
-    public partial class Vehicule : ISchoolType
+    public partial class Vehicule 
     {
       
 

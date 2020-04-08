@@ -7,7 +7,7 @@ namespace DataModel
     using Microsoft.EntityFrameworkCore;
 
     //[Table("dbo.Course")]
-    public  class Course : ISchoolType
+    public  class Course 
     {
        public Course()
         {
