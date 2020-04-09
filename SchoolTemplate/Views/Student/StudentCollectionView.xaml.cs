@@ -18,8 +18,8 @@ namespace SchoolTemplate.Views{
         {
 
 
-            if(value is StudentCollectionViewModel)
-                return ((StudentCollectionViewModel)value);
+            //if(value is StudentCollectionViewModel)
+            //    return ((StudentCollectionViewModel)value);
 
 
             return value;

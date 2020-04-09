@@ -85,15 +85,15 @@
             <Grid  DataContext="{Binding  ElementName=gridControl}" Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60"/>
-                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <dxlc:DataLayoutItem Grid.Row="0" x:Name="layoutItemTeacherID" DataContext="{Binding ElementName=gridControl}"  Binding="{Binding Path=CurrentItem.TeacherID, UpdateSourceTrigger=PropertyChanged}" />
-                    <dxlc:DataLayoutItem Grid.Row="1" x:Name="layoutItemTeacherName" DataContext="{Binding ElementName=gridControl}" Binding="{Binding Path=CurrentItem.TeacherName, UpdateSourceTrigger=PropertyChanged}" />
+                    <dxlc:DataLayoutItem Grid.Row="0"  x:Name="layoutItemTeacherID" DataContext="{Binding ElementName=gridControl}"  Binding="{Binding Path=CurrentItem.TeacherID, UpdateSourceTrigger=PropertyChanged}" />
+                    <dxlc:DataLayoutItem Grid.Row="1"  x:Name="layoutItemTeacherName" DataContext="{Binding ElementName=gridControl}" Binding="{Binding Path=CurrentItem.TeacherName, UpdateSourceTrigger=PropertyChanged}" />
                 <!--<dxlc:DataLayoutItem x:Name="layoutItemSchool" Binding="{Binding Entity.School, Mode=OneTime}">
                     <dxg:LookUpEdit Style="{StaticResource EntityView.LookUpEdit}" DataContext="{Binding ElementName=layoutControl, Path=DataContext}" EditValue="{Binding Entity.SchoolID, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnSourceUpdated=True}" ItemsSource="{Binding LookUpSchools.Entities}" ValueMember="SchoolID" DisplayMember="SchoolName">
                         <dxg:LookUpEdit.PopupContentTemplate>
@@ -104,8 +104,12 @@
                     </dxg:LookUpEdit>
                 </dxlc:DataLayoutItem>-->
                 </Grid>
-                <dxlc:LayoutGroup x:Name="Tabs" View="Tabs" MinHeight="250" Grid.Row="1">
+                <!--<dxlc:LayoutGroup x:Name="Tabs" View="Tabs" MinHeight="250" Grid.Row="1">
                     <DockPanel Style="{StaticResource EntityView.Detail.Container}"  dxlc:LayoutControl.TabHeader="{x:Static localization:SchoolDBContextResources.CoursePlural}">
+                        <DockPanel.Resources>
+                            <view:con x:Key="con1"/>
+                        </DockPanel.Resources>-->
+                        
                         <!--<dxb:ToolBarControl DockPanel.Dock="Top">
                             <dxb:BarButtonItem Style="{StaticResource EntityView.Detail.Command.New}" />
                             <dxb:BarButtonItem Style="{StaticResource EntityView.Detail.Command.Edit}" />
@@ -114,9 +118,10 @@
                             <dxb:BarButtonItem Style="{StaticResource EntityView.Detail.Command.Save}" />
                             <dxb:BarButtonItem Style="{StaticResource EntityView.Detail.Command.Reset}" />
                         </dxb:ToolBarControl>-->
-                        <dxg:GridControl x:Name="TeacherCoursesDetailsGrid" ItemsSource="{Binding CurrentItem.Courses,ElementName=gridControl}" dx:DXSerializer.SerializationID="TeacherCoursesDetailsGrid" Style="{StaticResource EntityView.Detail.GridControl.Editable}">
+                        <!--Style="{StaticResource EntityView.Detail.GridControl.Editable}"-->
+                        <dxg:GridControl Grid.Row="1" x:Name="TeacherCoursesDetailsGrid" VerticalAlignment="Stretch" ItemsSource="{Binding CurrentItem.Courses,ElementName=gridControl}" dx:DXSerializer.SerializationID="TeacherCoursesDetailsGrid" >
                             <dxg:GridControl.View>
-                                <dxg:TableView Style="{StaticResource EntityView.Detail.TableView}">
+                                <dxg:TableView Style="{StaticResource EntityView.Detail.TableView}" AllowEditing="True" EnableImmediatePosting="True">
                                     <!--<dxg:TableView.RowCellMenuCustomizations>
                                         <dxb:BarButtonItem Style="{StaticResource EntityView.Detail.GridCommand.New}" />
                                         <dxb:BarButtonItem Style="{StaticResource EntityView.Detail.GridCommand.Edit}" />
@@ -127,7 +132,7 @@
                             </dxg:GridControl.View>
                             <dxg:GridControl.Columns>
                                 <dxg:GridColumn  FieldName="CourseID" />
-                                <dxg:GridColumn  FieldName="CourseName" />
+                        <dxg:GridColumn  FieldName="CourseName" />
                             </dxg:GridControl.Columns>
                             <dxg:GridControl.TotalSummary>
                                 <dxg:GridSummaryItem SummaryType="Count" Alignment="Right" />
@@ -136,8 +141,8 @@
                                 <dxg:GridSummaryItem SummaryType="Count" />
                             </dxg:GridControl.GroupSummary>
                         </dxg:GridControl>
-                    </DockPanel>
-                </dxlc:LayoutGroup>
+                    <!--</DockPanel>
+                </dxlc:LayoutGroup>-->
             </Grid>
 
 
