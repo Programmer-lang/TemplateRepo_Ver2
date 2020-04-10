@@ -399,6 +399,9 @@
     <Compile Include="Views\Student\StudentView.xaml.cs">
       <DependentUpon>StudentView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Teacher\TeacherCollectionView-old.xaml.cs">
+      <DependentUpon>TeacherCollectionView-old.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Teacher\TeacherCollectionView.xaml.cs">
       <DependentUpon>TeacherCollectionView.xaml</DependentUpon>
     </Compile>
@@ -466,6 +469,10 @@
     <Page Include="Views\Student\StudentView.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Views\Teacher\TeacherCollectionView-old.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Teacher\TeacherCollectionView.xaml">
       <Generator>MSBuild:Compile</Generator>

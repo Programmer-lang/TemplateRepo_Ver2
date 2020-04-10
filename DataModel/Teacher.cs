@@ -8,7 +8,7 @@ namespace DataModel
     using Microsoft.EntityFrameworkCore;
 
     //[Table("dbo.Teacher")]
-    public partial class Teacher
+    public partial class Teacher:EntityBase
     { 
         public Teacher()
         {
@@ -17,8 +17,27 @@ namespace DataModel
 
         public decimal TeacherID { get; set; }
 
+       
+
+        private string teacherName;
+
         [StringLength(150)]
-        public string TeacherName { get; set; }
+        public string TeacherName
+        {
+            get
+            {
+                return teacherName;
+            }
+
+            set
+            {
+                if (teacherName != value)
+                {
+                    teacherName = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         public decimal SchoolID { get; set; }
 
