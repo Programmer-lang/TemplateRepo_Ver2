@@ -45,9 +45,17 @@ namespace SchoolTemplate.ViewModels {
         {
             var service = this.GetService<IDocumentManagerService>();
 
+            var OpenedDoc = service.Documents.Where(x => x.Title.ToString() == SelectedModule.ModuleTitle).FirstOrDefault();
+
+            if(OpenedDoc != null)
+            {
+                OpenedDoc.Show();
+                return;
+            }
+
             switch (SelectedModule.ModuleTitle)
             {
-
+                
 
                 case "Teachers":
                     var doc = service.CreateDocument(SelectedModule.DocumentType, null, this);
