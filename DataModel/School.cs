@@ -6,7 +6,7 @@ namespace DataModel
     using System.ComponentModel.DataAnnotations.Schema;
 
     //[Table("dbo.School")]
-    public  class School
+    public  class School:EntityBase
     {
         public School()
         {
@@ -15,11 +15,49 @@ namespace DataModel
 
         public decimal SchoolID { get; set; }
 
-        [StringLength(50)]
-        public string SchoolName { get; set; }
+    
+
+        private string schoolName;
 
         [StringLength(50)]
-        public string Director { get; set; }
+        public string SchoolName
+        {
+            get
+            {
+                return schoolName;
+            }
+
+            set
+            {
+                if (schoolName != value)
+                {
+                    schoolName = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private string director;
+
+        [StringLength(50)]
+        public string Director
+        {
+            get
+            {
+                return director;
+            }
+
+            set
+            {
+                if (director != value)
+                {
+                    director = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+      
 
        public virtual ICollection<Teacher> Teachers { get; set; }
     }
