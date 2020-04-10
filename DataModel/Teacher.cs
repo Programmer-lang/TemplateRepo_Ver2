@@ -16,7 +16,6 @@ namespace DataModel
         }
 
         public decimal TeacherID { get; set; }
-
        
 
         private string teacherName;
