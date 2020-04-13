@@ -17,6 +17,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:pfdata="http://schemas.microsoft.com/netfx/2007/xaml/presentation"
              xmlns:dxa="http://schemas.devexpress.com/winfx/2008/xaml/accordion"
+             xmlns:dxn="http://schemas.devexpress.com/winfx/2008/xaml/navbar"
              mc:Ignorable="d" d:DesignHeight="400" d:DesignWidth="600" DataContext="{dxmvvm:ViewModelSource viewModel:SchoolViewModel}">
     <UserControl.Resources>
         <ResourceDictionary Source="../../Resources/EntityViewResources.xaml" />
@@ -85,17 +86,25 @@
                                 </CollectionViewSource.GroupDescriptions>
                             </CollectionViewSource>
                         </dxdo:LayoutPanel.Resources>
-                        <dxa:AccordionControl   ItemsSource="{Binding Groups, Source={StaticResource ItemsSource}}" SelectedItem="{Binding SelectedModule}" ChildrenPath="Items" ViewMode="NavigationPane" ShowHeader="True" HeaderContent="{Binding SelectedRootItem.Name, RelativeSource={RelativeSource Self}}">
-                            <dxa:AccordionControl.ItemContainerStyle>
-                                <Style TargetType="dxa:AccordionItem">
-                                    <Style.Triggers>
-                                        <Trigger Property="ItemLevel" Value="1">
-                                            <Setter Property="Header" Value="{Binding ModuleTitle}" />
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </dxa:AccordionControl.ItemContainerStyle>
-                        </dxa:AccordionControl>
+                        <dxn:NavBarControl ItemsSource="{Binding Groups, Source={StaticResource ItemsSource}}" SelectedItem="{Binding SelectedModule}">
+                            <dxn:NavBarControl.Resources>
+                                <DataTemplate x:Key="ItemTemplate">
+                                    <ContentControl>
+                                        <dxn:NavBarItem Content="{Binding ModuleTitle}" />
+                                    </ContentControl>
+                                </DataTemplate>
+                            </dxn:NavBarControl.Resources>
+                            <dxn:NavBarControl.ItemTemplate>
+                                <DataTemplate>
+                                    <ContentControl>
+                                        <dxn:NavBarGroup Header="{Binding}" ItemTemplate="{StaticResource ItemTemplate}" />
+                                    </ContentControl>
+                                </DataTemplate>
+                            </dxn:NavBarControl.ItemTemplate>
+                            <dxn:NavBarControl.View>
+                                <dxn:NavigationPaneView IsExpandButtonVisible="False"/>
+                            </dxn:NavBarControl.View>
+                        </dxn:NavBarControl>
                     </dxdo:LayoutPanel>
                     <dxdo:DocumentGroup x:Name="documentGroup">
                         <dxdo:LayoutPanel Caption="School">

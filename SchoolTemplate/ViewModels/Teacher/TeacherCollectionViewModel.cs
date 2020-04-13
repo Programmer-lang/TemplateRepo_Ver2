@@ -7,6 +7,7 @@ using SchoolTemplate.SchoolDBContextDataModel;
 using SchoolTemplate.Common;
 using DataModel;
 using System.Collections.Specialized;
+using System.Collections.Generic;
 
 namespace SchoolTemplate.ViewModels {
 
@@ -41,58 +42,62 @@ namespace SchoolTemplate.ViewModels {
             FilterExpression = x => x.SchoolID == ((SchoolViewModel)ParentViewModel).Entity.SchoolID;
         }
 
-        public bool CanSaveAll() => true;
-        public void SaveAll()
-        {
-            this.Repository.UnitOfWork.SaveChanges();
+       
 
-        }
+        //protected override void OnBeforeEntitySaved(Teacher entity)
 
-        public void OnInitialized()
-        {
-            //GridControlFirstRowFocusService.FocusFirstRow();
-            //FocusedRowHandle = 0;
-            //this.RaisePropertyChanged(x => x.FocusedRowHandle);
-        }
+        //{
+        //    entity.SchoolID = ((SchoolViewModel)ParentViewModel).Entity.SchoolID;
+        //    entity.School = ((SchoolViewModel)ParentViewModel).Entity;
 
-        public void OnEntitiesChanged()
-        {
-            foreach (Teacher newItem in Entities)
-            {
-                //ModifiedItems.Add(newItem);
+        //    base.OnBeforeEntitySaved(entity);
+        //}
 
-                ////Add listener for each item on PropertyChanged event
-                //newItem.PropertyChanged += this.OnItemPropertyChanged;
+        //public void OnInitialized()
+        //{
+        //    //GridControlFirstRowFocusService.FocusFirstRow();
+        //    //FocusedRowHandle = 0;
+        //    //this.RaisePropertyChanged(x => x.FocusedRowHandle);
+        //}
 
-                newItem.SchoolID = ((SchoolViewModel)ParentViewModel).Entity.SchoolID;
-                newItem.School = ((SchoolViewModel)ParentViewModel).Entity;
-            }
-        }
-        public void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.NewItems != null)
-            {
-                foreach (Teacher newItem in e.NewItems)
-                {
-                    //ModifiedItems.Add(newItem);
+        //public void OnEntitiesChanged()
+        //{
+        //    foreach (Teacher newItem in Entities)
+        //    {
+        //        //ModifiedItems.Add(newItem);
 
-                    ////Add listener for each item on PropertyChanged event
-                    //newItem.PropertyChanged += this.OnItemPropertyChanged;
+        //        ////Add listener for each item on PropertyChanged event
+        //        //newItem.PropertyChanged += this.OnItemPropertyChanged;
 
-                    newItem.SchoolID = ((SchoolViewModel)ParentViewModel).Entity.SchoolID;
-                    newItem.School = ((SchoolViewModel)ParentViewModel).Entity;
-                }
-            }
+        //        newItem.SchoolID = ((SchoolViewModel)ParentViewModel).Entity.SchoolID;
+        //        newItem.School = ((SchoolViewModel)ParentViewModel).Entity;
+        //    }
+        //}
+        //public void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        //{
+        //    if (e.NewItems != null)
+        //    {
+        //        foreach (Teacher newItem in e.NewItems)
+        //        {
+        //            //ModifiedItems.Add(newItem);
 
-            //if (e.OldItems != null)
-            //{
-            //    foreach (Item oldItem in e.OldItems)
-            //    {
-            //        ModifiedItems.Add(oldItem);
+        //            ////Add listener for each item on PropertyChanged event
+        //            //newItem.PropertyChanged += this.OnItemPropertyChanged;
 
-            //        oldItem.PropertyChanged -= this.OnItemPropertyChanged;
-            //    }
-            //}
-        }
+        //            newItem.SchoolID = ((SchoolViewModel)ParentViewModel).Entity.SchoolID;
+        //            newItem.School = ((SchoolViewModel)ParentViewModel).Entity;
+        //        }
+        //    }
+
+        //    //if (e.OldItems != null)
+        //    //{
+        //    //    foreach (Item oldItem in e.OldItems)
+        //    //    {
+        //    //        ModifiedItems.Add(oldItem);
+
+        //    //        oldItem.PropertyChanged -= this.OnItemPropertyChanged;
+        //    //    }
+        //    //}
+        //}
     }
 }

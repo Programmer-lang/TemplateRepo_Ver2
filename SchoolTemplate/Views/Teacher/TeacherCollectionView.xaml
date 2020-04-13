@@ -70,10 +70,18 @@
                            EnableImmediatePosting="True"
                            NewItemRowPosition="Bottom"
                            >
-              <dxmvvm:Interaction.Behaviors>
-                            <!--<dxmvvm:FocusBehavior/>-->
+                        <dxmvvm:Interaction.Behaviors>
+                            <dxmvvm:EventToCommand EventName="RowUpdated" 
+                                                                   Command="{Binding DataContext.CourseUpdatedCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                                   PassEventArgsToCommand="True"
+                                                                   EventArgsConverter="{viewModel:Converter}"/>
                             <dxrudex:GridReportManagerService x:Name="TeacherCollectionViewReportService" />
-              </dxmvvm:Interaction.Behaviors>
+                        </dxmvvm:Interaction.Behaviors>
+                        
+                        <!--<dxmvvm:Interaction.Behaviors>
+                            --><!--<dxmvvm:FocusBehavior/>--><!--
+                            
+              </dxmvvm:Interaction.Behaviors>-->
               <dxg:TableView.RowCellMenuCustomizations>
                 <dxb:BarButtonItem Style="{StaticResource CollectionView.GridCommand.New}" />
                 <dxb:BarButtonItem Style="{StaticResource CollectionView.GridCommand.Edit}" />
@@ -86,7 +94,7 @@
           <dxg:GridControl.Columns>
             <dxg:GridColumn IsSmart="True" FieldName="TeacherID" />
             <dxg:GridColumn IsSmart="True" FieldName="TeacherName" />
-            <dxg:GridColumn FieldName="School.SchoolName" Header="{x:Static localization:SchoolDBContextResources.Teacher_School}" ReadOnly="True" />
+            <!--<dxg:GridColumn FieldName="School.SchoolName" Header="{x:Static localization:SchoolDBContextResources.Teacher_School}" ReadOnly="True" />-->
           </dxg:GridControl.Columns>
           <dxg:GridControl.TotalSummary>
             <dxg:GridSummaryItem SummaryType="Count" Alignment="Right" />
