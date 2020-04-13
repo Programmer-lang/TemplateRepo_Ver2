@@ -15,7 +15,10 @@ namespace SchoolTemplate.ViewModels {
     /// </summary>
     public partial class TeacherCollectionViewModel : CollectionViewModel<Teacher, decimal, ISchoolDBContextUnitOfWork> {
 
-       // public virtu56+58al int CurrentItem { get; set; } = 0;
+        //public virtual int FocusedRowHandle { get; set; } = 0;
+
+
+        //IGridControlFirstRowFocusService GridControlFirstRowFocusService { get { return this.GetService<IGridControlFirstRowFocusService>(); } }
 
         /// <summary>
         /// Creates a new instance of TeacherCollectionViewModel as a POCO view model.
@@ -43,6 +46,13 @@ namespace SchoolTemplate.ViewModels {
         {
             this.Repository.UnitOfWork.SaveChanges();
 
+        }
+
+        public void OnInitialized()
+        {
+            //GridControlFirstRowFocusService.FocusFirstRow();
+            //FocusedRowHandle = 0;
+            //this.RaisePropertyChanged(x => x.FocusedRowHandle);
         }
 
         public void OnEntitiesChanged()

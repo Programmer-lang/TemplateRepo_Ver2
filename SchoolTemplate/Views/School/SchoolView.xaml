@@ -85,7 +85,7 @@
                                 </CollectionViewSource.GroupDescriptions>
                             </CollectionViewSource>
                         </dxdo:LayoutPanel.Resources>
-                        <dxa:AccordionControl ItemsSource="{Binding Groups, Source={StaticResource ItemsSource}}" SelectedItem="{Binding SelectedModule}" ChildrenPath="Items" ViewMode="NavigationPane" ShowHeader="True" HeaderContent="{Binding SelectedRootItem.Name, RelativeSource={RelativeSource Self}}">
+                        <dxa:AccordionControl   ItemsSource="{Binding Groups, Source={StaticResource ItemsSource}}" SelectedItem="{Binding SelectedModule}" ChildrenPath="Items" ViewMode="NavigationPane" ShowHeader="True" HeaderContent="{Binding SelectedRootItem.Name, RelativeSource={RelativeSource Self}}">
                             <dxa:AccordionControl.ItemContainerStyle>
                                 <Style TargetType="dxa:AccordionItem">
                                     <Style.Triggers>

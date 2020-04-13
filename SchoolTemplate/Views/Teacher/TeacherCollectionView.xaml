@@ -15,13 +15,17 @@
         xmlns:localization="clr-namespace:SchoolTemplate.Localization"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignHeight="400" d:DesignWidth="600" DataContext="{dxmvvm:ViewModelSource viewModel:TeacherCollectionViewModel}">
+        
+             mc:Ignorable="d" d:DesignHeight="400" d:DesignWidth="600" DataContext="{dxmvvm:ViewModelSource viewModel:TeacherCollectionViewModel}">
     <UserControl.Resources>
         
 
         <ResourceDictionary  Source="../../Resources/EntityViewResources.xaml" />
         
     </UserControl.Resources>
+    <dxmvvm:Interaction.Behaviors>
+        <dxmvvm:EventToCommand EventName="Initialized" Command="{Binding OnInitializedCommand}"/>
+    </dxmvvm:Interaction.Behaviors>
     <DockPanel Style="{StaticResource CollectionView.RootContainer}">
         <!--<DockPanel.Resources>
             <view:con x:Name="con1" x:Key="con1"/>
@@ -54,14 +58,21 @@
 
       <dxlc:LayoutGroup View="GroupBox" Orientation="Vertical" >
 
-        <dxg:GridControl x:Name="gridControl" Style="{StaticResource CollectionView.GridControl.Editable}" AllowInitiallyFocusedRow="True" CurrentItem="{Binding CurrentIem, Mode=TwoWay}">
-          <dxg:GridControl.View>
-            <dxg:TableView Style="{StaticResource CollectionView.TableView}"  
+        <dxg:GridControl x:Name="gridControl"  ItemsSource="{Binding Entities}">
+                <!--Style="{StaticResource CollectionView.GridControl.Editable}"-->
+                <!--<dxmvvm:Interaction.Behaviors>
+                    <service:GridControlFirstRowFocusService/>
+                </dxmvvm:Interaction.Behaviors>-->
+                <dxg:GridControl.View>
+
+                    <dxg:TableView   Style="{StaticResource CollectionView.TableView}"
                            AllowEditing="True" 
                            EnableImmediatePosting="True"
-                           NewItemRowPosition="Bottom">
+                           NewItemRowPosition="Bottom"
+                           >
               <dxmvvm:Interaction.Behaviors>
-                <dxrudex:GridReportManagerService x:Name="TeacherCollectionViewReportService" />
+                            <!--<dxmvvm:FocusBehavior/>-->
+                            <dxrudex:GridReportManagerService x:Name="TeacherCollectionViewReportService" />
               </dxmvvm:Interaction.Behaviors>
               <dxg:TableView.RowCellMenuCustomizations>
                 <dxb:BarButtonItem Style="{StaticResource CollectionView.GridCommand.New}" />
@@ -70,7 +81,8 @@
                 <dxb:BarButtonItem Style="{StaticResource CollectionView.GridCommand.Refresh}" />
               </dxg:TableView.RowCellMenuCustomizations>
             </dxg:TableView>
-          </dxg:GridControl.View>
+                    <!--FocusedRowHandle="{Binding FocusedRowHandle, Mode=TwoWay}"-->
+                </dxg:GridControl.View>
           <dxg:GridControl.Columns>
             <dxg:GridColumn IsSmart="True" FieldName="TeacherID" />
             <dxg:GridColumn IsSmart="True" FieldName="TeacherName" />
