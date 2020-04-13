@@ -3,6 +3,7 @@ namespace DataModel
    
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Collections.Specialized;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -12,7 +13,8 @@ namespace DataModel
         public School()
         {
             Teachers = new ObservableCollection<Teacher>();
-        }
+           // Teachers.CollectionChanged += this.OnCollectionChanged;
+         }
 
         public decimal SchoolID { get; set; }
 
@@ -61,5 +63,7 @@ namespace DataModel
       
 
        public virtual ObservableCollection<Teacher> Teachers { get; set; }
+
+        
     }
 }

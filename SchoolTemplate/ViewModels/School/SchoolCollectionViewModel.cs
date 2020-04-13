@@ -15,8 +15,16 @@ namespace SchoolTemplate.ViewModels {
     /// Represents the Schools collection view model.
     /// </summary>
     public partial class SchoolCollectionViewModel : CollectionViewModel<School, decimal, ISchoolDBContextUnitOfWork> {
+
+
         public ObservableCollection<MenuIDHistory> MenuIDHistory { get;  set; }
+
+
+
         public virtual MenuIDHistory SelectedMenuID { get; set; }
+
+
+
         /// <summary>
         /// Creates a new instance of SchoolCollectionViewModel as a POCO view model.
         /// </summary>

@@ -1,6 +1,7 @@
 namespace DataModel
 {
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Diagnostics;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
 
@@ -25,14 +26,17 @@ namespace DataModel
         public SchoolDBContext(DbContextOptions<SchoolDBContext> options)
             : base(options)
         {
+          //  ((IObjectContextAdapter)this).ObjectContext.ObjectMaterialized +=
+          //(sender, e) => Subscribe(e.Entity as Node);
         }
 
-        
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-         =>  optionsBuilder
-          .UseLazyLoadingProxies()
-                .UseSqlServer(connectionString);
+         => optionsBuilder
+            .UseSqlServer(connectionString)
+            .UseLazyLoadingProxies();
+           // .ConfigureWarnings(warn => warn.Ignore(CoreEventId.DetachedLazyLoadingWarning));
 
             
         

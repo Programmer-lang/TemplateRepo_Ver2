@@ -54,9 +54,12 @@
 
       <dxlc:LayoutGroup View="GroupBox" Orientation="Vertical" >
 
-        <dxg:GridControl x:Name="gridControl" Style="{StaticResource CollectionView.GridControl.Editable}" AllowInitiallyFocusedRow="True">
+        <dxg:GridControl x:Name="gridControl" Style="{StaticResource CollectionView.GridControl.Editable}" AllowInitiallyFocusedRow="True" CurrentItem="{Binding CurrentIem, Mode=TwoWay}">
           <dxg:GridControl.View>
-            <dxg:TableView Style="{StaticResource CollectionView.TableView}"  AllowEditing="True" EnableImmediatePosting="True">
+            <dxg:TableView Style="{StaticResource CollectionView.TableView}"  
+                           AllowEditing="True" 
+                           EnableImmediatePosting="True"
+                           NewItemRowPosition="Bottom">
               <dxmvvm:Interaction.Behaviors>
                 <dxrudex:GridReportManagerService x:Name="TeacherCollectionViewReportService" />
               </dxmvvm:Interaction.Behaviors>
@@ -98,21 +101,28 @@
           </dxlc:DataLayoutItem>-->
           <dxlc:LayoutGroup x:Name="Tabs" View="Tabs" MinHeight="250">
             <DockPanel Style="{StaticResource EntityView.DetailManyToMany.Container}"  dxlc:LayoutControl.TabHeader="Course">
-              <dxb:ToolBarControl DockPanel.Dock="Top">
+              <!--<dxb:ToolBarControl DockPanel.Dock="Top">
                 <dxb:BarButtonItem Style="{StaticResource EntityView.DetailManyToMany.Command.New}" />
                 <dxb:BarButtonItem Style="{StaticResource EntityView.DetailManyToMany.Command.Edit}" />
                 <dxb:BarButtonItem Style="{StaticResource EntityView.DetailManyToMany.Command.Add}" />
                 <dxb:BarButtonItem Style="{StaticResource EntityView.DetailManyToMany.Command.Delete}" />
-              </dxb:ToolBarControl>
-              <dxg:GridControl x:Name="CoursesDetailEntitiesGrid" dx:DXSerializer.SerializationID="CoursesDetailEntitiesGrid" ItemsSource="{Binding CurrentItem.Courses,ElementName=gridControl}" >
+              </dxb:ToolBarControl>-->
+              <dxg:GridControl x:Name="CoursesDetailEntitiesGrid" 
+                               dx:DXSerializer.SerializationID="CoursesDetailEntitiesGrid" 
+                               ItemsSource="{Binding CurrentItem.Courses,ElementName=gridControl}" 
+                               >
                 <dxg:GridControl.View>
-                  <dxg:TableView Style="{StaticResource EntityView.DetailManyToMany.TableView}" AllowEditing="True" EnableImmediatePosting="True">
+                  <dxg:TableView Style="{StaticResource EntityView.DetailManyToMany.TableView}" 
+                                 AllowEditing="True" 
+                                 EnableImmediatePosting="True"
+                                 NewItemRowPosition="Bottom">
                     <dxg:TableView.RowCellMenuCustomizations>
                       <dxb:BarButtonItem Style="{StaticResource EntityView.DetailManyToMany.GridCommand.New}" />
                       <dxb:BarButtonItem Style="{StaticResource EntityView.DetailManyToMany.GridCommand.Edit}" />
                       <dxb:BarButtonItem Style="{StaticResource EntityView.DetailManyToMany.GridCommand.Add}" />
                       <dxb:BarButtonItem Style="{StaticResource EntityView.DetailManyToMany.GridCommand.Delete}" />
                     </dxg:TableView.RowCellMenuCustomizations>
+                    
                   </dxg:TableView>
                 </dxg:GridControl.View>
                 <dxg:GridControl.Columns>

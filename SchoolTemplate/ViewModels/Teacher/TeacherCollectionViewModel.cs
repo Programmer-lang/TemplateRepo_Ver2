@@ -6,6 +6,7 @@ using DevExpress.Mvvm.ViewModel;
 using SchoolTemplate.SchoolDBContextDataModel;
 using SchoolTemplate.Common;
 using DataModel;
+using System.Collections.Specialized;
 
 namespace SchoolTemplate.ViewModels {
 
@@ -13,6 +14,8 @@ namespace SchoolTemplate.ViewModels {
     /// Represents the Teachers collection view model.
     /// </summary>
     public partial class TeacherCollectionViewModel : CollectionViewModel<Teacher, decimal, ISchoolDBContextUnitOfWork> {
+
+       // public virtu56+58al int CurrentItem { get; set; } = 0;
 
         /// <summary>
         /// Creates a new instance of TeacherCollectionViewModel as a POCO view model.
@@ -30,6 +33,8 @@ namespace SchoolTemplate.ViewModels {
         protected TeacherCollectionViewModel(IUnitOfWorkFactory<ISchoolDBContextUnitOfWork> unitOfWorkFactory = null)
             : base(unitOfWorkFactory ?? UnitOfWorkSource.GetUnitOfWorkFactory(), x => x.Teachers) {
 
+           // Entities.CollectionChanged += OnCollectionChanged;
+
             FilterExpression = x => x.SchoolID == ((SchoolViewModel)ParentViewModel).Entity.SchoolID;
         }
 
@@ -38,6 +43,46 @@ namespace SchoolTemplate.ViewModels {
         {
             this.Repository.UnitOfWork.SaveChanges();
 
+        }
+
+        public void OnEntitiesChanged()
+        {
+            foreach (Teacher newItem in Entities)
+            {
+                //ModifiedItems.Add(newItem);
+
+                ////Add listener for each item on PropertyChanged event
+                //newItem.PropertyChanged += this.OnItemPropertyChanged;
+
+                newItem.SchoolID = ((SchoolViewModel)ParentViewModel).Entity.SchoolID;
+                newItem.School = ((SchoolViewModel)ParentViewModel).Entity;
+            }
+        }
+        public void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                foreach (Teacher newItem in e.NewItems)
+                {
+                    //ModifiedItems.Add(newItem);
+
+                    ////Add listener for each item on PropertyChanged event
+                    //newItem.PropertyChanged += this.OnItemPropertyChanged;
+
+                    newItem.SchoolID = ((SchoolViewModel)ParentViewModel).Entity.SchoolID;
+                    newItem.School = ((SchoolViewModel)ParentViewModel).Entity;
+                }
+            }
+
+            //if (e.OldItems != null)
+            //{
+            //    foreach (Item oldItem in e.OldItems)
+            //    {
+            //        ModifiedItems.Add(oldItem);
+
+            //        oldItem.PropertyChanged -= this.OnItemPropertyChanged;
+            //    }
+            //}
         }
     }
 }
