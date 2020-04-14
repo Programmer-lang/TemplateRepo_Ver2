@@ -109,7 +109,7 @@
             </dxr:RibbonStatusBarControl.LeftItems>
         </dxr:RibbonStatusBarControl>
 
-        <Grid Background="Transparent">
+        <!--<Grid Background="Transparent">
             <dxmvvm:Interaction.Behaviors>
                 <dxmvvm:LayoutSerializationService Name="RootLayoutSerializationService" />
                 <dxmvvm:CurrentWindowSerializationBehavior />
@@ -117,15 +117,15 @@
             <dxdo:DockLayoutManager MDIMergeStyle="WhenLoadedOrChildActivated">
                 <dxdo:LayoutGroup>
                    
-                    <dxdo:DocumentGroup x:Name="documentGroup">
-                        <dxdo:LayoutPanel Caption="School" >
+                    <dxdo:DocumentGroup x:Name="documentGroup">-->
+                        <!--<dxdo:LayoutPanel Caption="School" >-->
                             <dxg:GridControl x:Name="gridControl" Style="{StaticResource CollectionView.GridControl.Base}">
 
                                 <dxg:GridControl.View>
                                     <dxg:TableView Style="{StaticResource CollectionView.TableView}">
                                         <dxmvvm:Interaction.Behaviors>
 
-                                            <dxmvvm:EventToCommand EventName="MouseDoubleClick" Command="{Binding EditCommand}" PassEventArgsToCommand="True" MarkRoutedEventsAsHandled="True">
+                                            <dxmvvm:EventToCommand EventName="MouseDoubleClick" Command="{Binding EditSchoolCommand}" PassEventArgsToCommand="True" MarkRoutedEventsAsHandled="True">
                                                 <dxmvvm:EventToCommand.EventArgsConverter>
                                                     <dx:EventArgsToDataRowConverter />
                                                 </dxmvvm:EventToCommand.EventArgsConverter>
@@ -153,7 +153,7 @@
                                     <dxg:GridSummaryItem SummaryType="Count" />
                                 </dxg:GridControl.GroupSummary>
                             </dxg:GridControl>
-                        </dxdo:LayoutPanel>
+                        <!--</dxdo:LayoutPanel>
 
                         <dxmvvm:Interaction.Behaviors>
                 <dxdo:TabbedDocumentUIService />
@@ -161,6 +161,6 @@
         </dxdo:DocumentGroup>
                 </dxdo:LayoutGroup>
             </dxdo:DockLayoutManager>
-        </Grid>
+        </Grid>-->
     </DockPanel>
 </UserControl>

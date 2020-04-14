@@ -25,6 +25,9 @@
     
 
     <DockPanel Style="{StaticResource EntityView.RootContainer}">
+        <!--<dxmvvm:Interaction.Behaviors>
+            <dxmvvm:CurrentWindowService ClosingCommand="{Binding OnClosingCommand}" />
+        </dxmvvm:Interaction.Behaviors>-->
         <dxr:RibbonControl DockPanel.Dock="Top" Style="{StaticResource EntityView.RibbonControl}">
             <dxr:RibbonDefaultPageCategory>
                 <dxr:RibbonPage Style="{StaticResource EntityView.RibbonPage}">
@@ -69,7 +72,7 @@
         </dxdo:LayoutPanel>-->
 
 
-        <Grid Background="Transparent">
+        <!--<Grid Background="Transparent">
             <dxmvvm:Interaction.Behaviors>
                 <dxmvvm:LayoutSerializationService Name="RootLayoutSerializationService" />
                 <dxmvvm:CurrentWindowSerializationBehavior />
@@ -106,7 +109,7 @@
                             </dxn:NavBarControl.View>
                         </dxn:NavBarControl>
                     </dxdo:LayoutPanel>
-                    <dxdo:DocumentGroup x:Name="documentGroup">
+                    <dxdo:DocumentGroup x:Name="documentGroup">-->
                         <dxdo:LayoutPanel Caption="School">
                             <dxlc:LayoutControl x:Name="layoutControl" Style="{StaticResource EntityView.LayoutControl}">
                                 <dxlc:DataLayoutItem x:Name="layoutItemSchoolID" Binding="{Binding Entity.SchoolID, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding DataContext.IsPrimaryKeyReadOnly, RelativeSource={RelativeSource AncestorType={x:Type dxlc:LayoutControl}}}" />
@@ -149,12 +152,12 @@
                             </dxlc:LayoutControl>
                         </dxdo:LayoutPanel>
 
-                        <dxmvvm:Interaction.Behaviors>
+                        <!--<dxmvvm:Interaction.Behaviors>
                             <dxdo:TabbedDocumentUIService />
                         </dxmvvm:Interaction.Behaviors>
                     </dxdo:DocumentGroup>
                 </dxdo:LayoutGroup>
-            </dxdo:DockLayoutManager>
-        </Grid>
+            </dxdo:DockLayoutManager>-->
+        <!--</Grid>-->
     </DockPanel>
 </UserControl>

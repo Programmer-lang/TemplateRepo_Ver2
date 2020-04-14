@@ -39,7 +39,7 @@ namespace SchoolTemplate.ViewModels {
             : base(unitOfWorkFactory ?? UnitOfWorkSource.GetUnitOfWorkFactory(), x => x.Students) {
 
 
-            FilterExpression = x => x.SchoolID == ((SchoolViewModel)ParentViewModel).Entity.SchoolID;
+            FilterExpression = x => x.SchoolID == SchoolDBContextViewModel.ID;
         }
 
         //,x=> x.Where(y=> y.SchoolID == ParentViewModel.SchoolID)

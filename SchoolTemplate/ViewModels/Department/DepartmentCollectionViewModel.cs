@@ -29,7 +29,7 @@ namespace SchoolTemplate.ViewModels {
         /// <param name="unitOfWorkFactory">A factory used to create a unit of work instance.</param>
         protected DepartmentCollectionViewModel(IUnitOfWorkFactory<ISchoolDBContextUnitOfWork> unitOfWorkFactory = null)
             : base(unitOfWorkFactory ?? UnitOfWorkSource.GetUnitOfWorkFactory(), x => x.Departments) {
-            FilterExpression = x => x.SchoolID == ((SchoolViewModel)ParentViewModel).Entity.SchoolID;
+            FilterExpression = x => x.SchoolID == SchoolDBContextViewModel.ID;
         }
 
         public bool CanSaveAll() => true;

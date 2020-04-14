@@ -8,6 +8,7 @@ using SchoolTemplate.Common;
 using DataModel;
 using DevExpress.Mvvm;
 using System.Collections.ObjectModel;
+using SchoolTemplate.Localization;
 
 namespace SchoolTemplate.ViewModels {
 
@@ -17,13 +18,71 @@ namespace SchoolTemplate.ViewModels {
     public partial class SchoolCollectionViewModel : CollectionViewModel<School, decimal, ISchoolDBContextUnitOfWork> {
 
 
-        public ObservableCollection<MenuIDHistory> MenuIDHistory { get;  set; }
+        //public ObservableCollection<MenuIDHistory> MenuIDHistory { get;  set; }
+
+        //public bool IsVisible { get; set; } = false;
+
+        //public virtual MenuIDHistory SelectedMenuID { get; set; }
+
+        //public virtual SchoolDBContextModuleDescription ActiveModule { get; protected set; }
+
+        //public virtual SchoolDBContextModuleDescription SelectedModule { get; set; }
+
+        //const string TablesGroup = "Tables";
+
+        //const string ViewsGroup = "Views";
+        //public SchoolDBContextModuleDescription[] Modules { get; set; } = new SchoolDBContextModuleDescription[] {
+
+        //      new SchoolDBContextModuleDescription(SchoolDBContextResources.TeacherPlural, "TeacherCollectionView", TablesGroup, null),
+        //      new SchoolDBContextModuleDescription(SchoolDBContextResources.StudentPlural, "StudentCollectionView", TablesGroup, null),
+        //      new SchoolDBContextModuleDescription(SchoolDBContextResources.DepartmentPlural, "DepartmentCollectionView", TablesGroup, null),
+        //      new SchoolDBContextModuleDescription(SchoolDBContextResources.VehiculePlural, "VehiculeCollectionView", TablesGroup, null),
 
 
 
-        public virtual MenuIDHistory SelectedMenuID { get; set; }
+        //};
+
+        //public void OnSelectedModuleChanged()
+        //{
+        //    var service = this.GetService<IDocumentManagerService>();
+
+        //    var OpenedDoc = service.Documents.Where(x => x.Title.ToString() == SelectedModule.ModuleTitle).FirstOrDefault();
+
+        //    if (OpenedDoc != null)
+        //    {
+        //        OpenedDoc.Show();
+        //        return;
+        //    }
+
+        //    switch (SelectedModule.ModuleTitle)
+        //    {
 
 
+        //        case "Teachers":
+        //            var doc = service.CreateDocument(SelectedModule.DocumentType, null, this);
+        //            doc.Title = "Teachers";
+        //            doc.Show();
+        //            break;
+        //        case "Students":
+        //            var docstud = service.CreateDocument(SelectedModule.DocumentType, null, this);
+        //            docstud.Title = "Students";
+        //            docstud.Show();
+        //            break;
+
+        //        case "Departments":
+        //            var docDep = service.CreateDocument(SelectedModule.DocumentType, null, this);
+        //            docDep.Title = "Departments";
+        //            docDep.Show();
+        //            break;
+
+        //        case "Vehicules":
+        //            var docVeh = service.CreateDocument(SelectedModule.DocumentType, null, this);
+        //            docVeh.Title = "Vehicules";
+        //            docVeh.Show();
+        //            break;
+        //    }
+
+        //}
 
         /// <summary>
         /// Creates a new instance of SchoolCollectionViewModel as a POCO view model.
@@ -51,31 +110,48 @@ namespace SchoolTemplate.ViewModels {
 
         }
 
-        public void OnInitialized()
+        //public void OnInitialized()
+        //{
+
+        //    try
+        //    {
+
+
+        //        MenuIDHistory = new ObservableCollection<MenuIDHistory>(UnitOfWorkSource.GetUnitOfWorkFactory().CreateUnitOfWork().GetMenuIDHistoryData("usp_GetData " + "Ali"));
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        MessageBoxService.Show(ex.Message);
+
+        //    }
+        //}
+
+
+        //public void EditID()
+        //{
+        //    ((SchoolDBContextViewModel)ParentViewModel).IsVisible = true;
+        //    ((SchoolDBContextViewModel)ParentViewModel).RaisePropertyChanged(x => x.IsVisible);
+
+        //    var service = this.GetService<IDocumentManagerService>();
+        //    service.ShowExistingEntityDocument<School, decimal>(this, SelectedMenuID.ID);
+
+        //    SelectedMenuID = null;
+        //}
+
+        
+        public void EditSchool(School projectionEntity)
         {
+            ((SchoolDBContextViewModel)ParentViewModel).IsVisible = true;
+            ((SchoolDBContextViewModel)ParentViewModel).RaisePropertyChanged(x => x.IsVisible);
 
-            try
-            {
+            SchoolDBContextViewModel.ID = projectionEntity.SchoolID;
 
-
-                MenuIDHistory = new ObservableCollection<MenuIDHistory>(UnitOfWorkSource.GetUnitOfWorkFactory().CreateUnitOfWork().GetMenuIDHistoryData("usp_GetData " + "Ali"));
-
-            }
-            catch (Exception ex)
-            {
-
-                MessageBoxService.Show(ex.Message);
-
-            }
-        }
-
-
-        public void EditID()
-        {
             var service = this.GetService<IDocumentManagerService>();
-            service.ShowExistingEntityDocument<School, decimal>(this, SelectedMenuID.ID);
+            service.ShowExistingEntityDocument<School, decimal>(this, projectionEntity.SchoolID);
 
-            SelectedMenuID = null;
+            
         }
 
     }

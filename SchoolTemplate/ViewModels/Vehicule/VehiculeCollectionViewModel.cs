@@ -30,7 +30,7 @@ namespace SchoolTemplate.ViewModels {
         protected VehiculeCollectionViewModel(IUnitOfWorkFactory<ISchoolDBContextUnitOfWork> unitOfWorkFactory = null)
             : base(unitOfWorkFactory ?? UnitOfWorkSource.GetUnitOfWorkFactory(), x => x.Vehicules) {
 
-            FilterExpression = x => x.SchoolID == ((SchoolViewModel)ParentViewModel).Entity.SchoolID;
+            FilterExpression = x => x.SchoolID == SchoolDBContextViewModel.ID;
         }
 
         public bool CanSaveAll() => true;

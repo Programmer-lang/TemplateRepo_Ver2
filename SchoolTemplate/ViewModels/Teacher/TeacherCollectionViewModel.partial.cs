@@ -19,7 +19,7 @@ namespace SchoolTemplate.ViewModels
         {
             if (!ChangedTeachers.Contains(teacher))
             {
-                teacher.SchoolID = ((SchoolViewModel)ParentViewModel).Entity.SchoolID;
+                teacher.SchoolID = SchoolDBContextViewModel.ID;
                 ChangedTeachers.Add(teacher);
             }
         }

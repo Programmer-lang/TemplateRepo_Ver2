@@ -10,8 +10,8 @@
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowState="Maximized"
         Title="MainWindow" >
     <Grid>
-        <!--<views:SchoolDBContextView/>-->
-        <views:SchoolCollectionView/>
+        <views:SchoolDBContextView/>
+        <!--<views:SchoolCollectionView/>-->
 
     </Grid>
 </dx:ThemedWindow>

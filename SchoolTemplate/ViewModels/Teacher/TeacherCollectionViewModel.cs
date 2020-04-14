@@ -39,7 +39,7 @@ namespace SchoolTemplate.ViewModels {
 
            // Entities.CollectionChanged += OnCollectionChanged;
 
-            FilterExpression = x => x.SchoolID == ((SchoolViewModel)ParentViewModel).Entity.SchoolID;
+            FilterExpression = x => x.SchoolID == SchoolDBContextViewModel.ID;
         }
 
        

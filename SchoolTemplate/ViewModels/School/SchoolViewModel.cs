@@ -12,6 +12,7 @@ using SchoolTemplate.Common;
 using DataModel;
 using SchoolTemplate.Localization;
 using DevExpress.XtraReports.UI;
+using System.ComponentModel;
 
 namespace SchoolTemplate.ViewModels {
 
@@ -229,9 +230,17 @@ public static SchoolViewModel Create(IUnitOfWorkFactory<ISchoolDBContextUnitOfWo
         }
 
 
+        //public  void OnClosing(CancelEventArgs cancelEventArgs)
+        //{
+
+        //}
+
+        //protected override void OnClosing(CloseAllMessage message)
+        //{
+        //    base.OnClosing(message);
 
 
-
+        //}
 
 
         //public  class SchoolModuleDescription : ModuleDescription<SingleObjectViewModel<ISchoolType, decimal, IUnitOfWork>>

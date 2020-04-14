@@ -17,16 +17,80 @@
         xmlns:localization="clr-namespace:SchoolTemplate.Localization"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="800" UseLayoutRounding="True" DataContext="{dxmvvm:ViewModelSource viewModel:SchoolDBContextViewModel}">
+             xmlns:dxrudex="http://schemas.devexpress.com/winfx/2008/xaml/reports/userdesignerextensions"
+             mc:Ignorable="d" d:DesignHeight="600" d:DesignWidth="800" UseLayoutRounding="True" DataContext="{dxmvvm:ViewModelSource viewModel:SchoolDBContextViewModel}">
+    <UserControl.Resources>
+        <ResourceDictionary Source="../Resources/CollectionViewResources.xaml" />
+    </UserControl.Resources>
     <DockPanel>
         <dxmvvm:Interaction.Behaviors>
             <dxmvvm:EventToCommand EventName="Initialized" Command="{Binding OnLoadedCommand}" CommandParameter="{Binding DefaultModule}" />
             <dx:WindowedDocumentUIService x:Name="WindowedDocumentUIService" DocumentShowMode="Dialog" />
             <dxmvvm:CurrentWindowService ClosingCommand="{Binding OnClosingCommand}" />
         </dxmvvm:Interaction.Behaviors>
-        <dxr:RibbonControl RibbonStyle="Office2010" DockPanel.Dock="Top" AllowCustomization="False">
-            <dxr:RibbonControl.ToolbarItems>
-                <dxb:BarButtonItem Content="{x:Static localization:ViewResources.Command_SaveAll}" Command="{Binding SaveAllCommand}" LargeGlyph="{dx:DXImage Image=SaveAll_32x32.png}" Glyph="{dx:DXImage Image=SaveAll_16x16.png}" />
+        <dxr:RibbonControl Style="{StaticResource CollectionView.RibbonControl}" DockPanel.Dock="Top"
+                            ApplicationButtonSmallIcon="{dx:DXImage Image=Home_16x16.png}" 
+                            ApplicationButtonLargeIcon="{dx:DXImage Image=Home_32x32.png}" 
+                            ApplicationButtonText="File" 
+                            PageCategoryAlignment="Right"
+                            RibbonStyle="Office2010"
+                               AllowCustomization="False"
+                           >
+
+                <dxr:RibbonControl.ApplicationMenu>
+                    <dxr:ApplicationMenu Visibility="Visible" RightPaneWidth="200" ShowRightPane="True">
+                        <dxr:ApplicationMenu.ItemLinks>
+                        <dxb:BarButtonItemLink BarItemName="btnSaveAll"/>
+                        </dxr:ApplicationMenu.ItemLinks>
+
+                        <dxr:ApplicationMenu.RightPane>
+                            <Border Background="White" BorderThickness="1,0,0,0" BorderBrush="LightGray">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Border BorderThickness="0,0,0,1" BorderBrush="LightGray">
+                                        <Label>Recent Documents</Label>
+                                    </Border>
+
+                                    <ListView x:Name="myListView" ItemsSource="{Binding MenuIDHistory}"  SelectedItem="{Binding SelectedMenuID,Mode=TwoWay}">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Name="tbAppNum" Text="{Binding ID , StringFormat={}{0:G29}}"  />
+                                                    <TextBlock Text="  " />
+                                                    <TextBlock Text="{Binding Note}" />
+                                                </StackPanel>
+
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+
+                                        <dxmvvm:Interaction.Behaviors>
+                                            <dxmvvm:EventToCommand Command="{Binding EditIDCommand}"  EventName="MouseDoubleClick" />
+
+                                        </dxmvvm:Interaction.Behaviors>
+
+                                    </ListView>
+                                </Grid>
+
+                            </Border>
+                        </dxr:ApplicationMenu.RightPane>
+
+                        <!--<dxr:ApplicationMenu.BottomPane>
+                        <StackPanel Orientation="Horizontal">
+
+                            <Button Content="Exit" Width="100" />
+
+                        </StackPanel>
+                    </dxr:ApplicationMenu.BottomPane>-->
+
+                    </dxr:ApplicationMenu>
+                </dxr:RibbonControl.ApplicationMenu>
+                
+
+                <dxr:RibbonControl.ToolbarItems>
+                <dxb:BarButtonItem Name="btnSaveAll" Content="{x:Static localization:ViewResources.Command_SaveAll}" Command="{Binding SaveAllCommand}" LargeGlyph="{dx:DXImage Image=SaveAll_32x32.png}" Glyph="{dx:DXImage Image=SaveAll_16x16.png}" />
             </dxr:RibbonControl.ToolbarItems>
             <dxr:RibbonDefaultPageCategory>
                 <dxr:RibbonPage Caption="{x:Static localization:ViewResources.RibbonPage_View}" MergeOrder="1000">
@@ -48,7 +112,7 @@
             </dxmvvm:Interaction.Behaviors>
             <dxdo:DockLayoutManager MDIMergeStyle="WhenLoadedOrChildActivated">
                 <dxdo:LayoutGroup>
-                    <dxdo:LayoutPanel Caption="{x:Static localization:ViewResources.LayoutPanel_Navigation}" ItemWidth="0.5*" MaxWidth="150">
+                    <dxdo:LayoutPanel Visibility="{Binding IsVisible, Converter={dx:BooleanToVisibilityConverter}}" Caption="{x:Static localization:ViewResources.LayoutPanel_Navigation}" ItemWidth="0.5*" MaxWidth="150"   >
                         <dxdo:LayoutPanel.Resources>
                             <CollectionViewSource x:Key="ItemsSource" Source="{Binding Modules}">
                                 <CollectionViewSource.GroupDescriptions>
@@ -69,6 +133,42 @@
                         </dxa:AccordionControl>
                     </dxdo:LayoutPanel>
                     <dxdo:DocumentGroup x:Name="documentGroup">
+                        <!--<dxdo:LayoutPanel Caption="School" DataContext="{Binding SchoolDetailEntities}">
+                            <dxg:GridControl x:Name="SchoolDetailEntitiesGrid" dx:DXSerializer.SerializationID="SchoolDetailEntitiesGrid" Style="{StaticResource CollectionView.GridControl.Base}">
+
+                                <dxg:GridControl.View>
+                                    <dxg:TableView Style="{StaticResource CollectionView.TableView}">
+                                        <dxmvvm:Interaction.Behaviors>
+
+                                            <dxmvvm:EventToCommand EventName="MouseDoubleClick" Command="{Binding EditSchoolCommand}" PassEventArgsToCommand="True" MarkRoutedEventsAsHandled="True">
+                                                <dxmvvm:EventToCommand.EventArgsConverter>
+                                                    <dx:EventArgsToDataRowConverter />
+                                                </dxmvvm:EventToCommand.EventArgsConverter>
+                                            </dxmvvm:EventToCommand>
+
+                                            <dxrudex:GridReportManagerService x:Name="SchoolCollectionViewReportService" />
+                                        </dxmvvm:Interaction.Behaviors>
+                                        <dxg:TableView.RowCellMenuCustomizations>
+                                            <dxb:BarButtonItem Style="{StaticResource CollectionView.GridCommand.New}" />
+                                            <dxb:BarButtonItem Style="{StaticResource CollectionView.GridCommand.Edit}" />
+                                            <dxb:BarButtonItem Style="{StaticResource CollectionView.GridCommand.Delete}" />
+                                            <dxb:BarButtonItem Style="{StaticResource CollectionView.GridCommand.Refresh}" />
+                                        </dxg:TableView.RowCellMenuCustomizations>
+                                    </dxg:TableView>
+                                </dxg:GridControl.View>
+                                <dxg:GridControl.Columns>
+                                    <dxg:GridColumn IsSmart="True" FieldName="SchoolID" />
+                                    <dxg:GridColumn IsSmart="True" FieldName="SchoolName" />
+                                    <dxg:GridColumn IsSmart="True" FieldName="Director" />
+                                </dxg:GridControl.Columns>
+                                <dxg:GridControl.TotalSummary>
+                                    <dxg:GridSummaryItem SummaryType="Count" Alignment="Right" />
+                                </dxg:GridControl.TotalSummary>
+                                <dxg:GridControl.GroupSummary>
+                                    <dxg:GridSummaryItem SummaryType="Count" />
+                                </dxg:GridControl.GroupSummary>
+                            </dxg:GridControl>
+                        </dxdo:LayoutPanel>-->
                         <dxmvvm:Interaction.Behaviors>
                             <dxdo:TabbedDocumentUIService />
                         </dxmvvm:Interaction.Behaviors>
