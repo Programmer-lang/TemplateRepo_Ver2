@@ -226,6 +226,7 @@ public static SchoolViewModel Create(IUnitOfWorkFactory<ISchoolDBContextUnitOfWo
             {
 
                 MessageBoxService.Show(ex.Message);
+
             }
         }
 
