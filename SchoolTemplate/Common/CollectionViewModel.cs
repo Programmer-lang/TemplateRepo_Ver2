@@ -18,12 +18,17 @@ namespace SchoolTemplate.Common {
     /// <typeparam name="TEntity">An entity type.</typeparam>
     /// <typeparam name="TPrimaryKey">A primary key value type.</typeparam>
     /// <typeparam name="TUnitOfWork">A unit of work type.</typeparam>
-    public partial class CollectionViewModel<TEntity, TPrimaryKey, TUnitOfWork> : CollectionViewModel<TEntity, TEntity, TPrimaryKey, TUnitOfWork>
+    public partial class CollectionViewModel<TEntity, TPrimaryKey, TUnitOfWork> : CollectionViewModel<TEntity, TEntity, TPrimaryKey, TUnitOfWork>,ISupportParameter 
         where TEntity : class
         where TUnitOfWork : IUnitOfWork {
+        public object Parameter { get; set; }
+
+        protected virtual void OnParameterChanged()
+        {
+
+        }
 
 
-       
         /// <summary>
         /// Creates a new instance of CollectionViewModel as a POCO view model.
         /// </summary>

@@ -24,9 +24,9 @@
     </UserControl.Resources>
     <DockPanel>
         <dxmvvm:Interaction.Behaviors>
-            <dxmvvm:EventToCommand EventName="Initialized" Command="{Binding OnLoadedCommand}" CommandParameter="{Binding DefaultModule}" />
+            <dxmvvm:EventToCommand EventName="Initialized" Command="{Binding OnLoadedCommand}"  />
             <dx:WindowedDocumentUIService x:Name="WindowedDocumentUIService" DocumentShowMode="Dialog" />
-            <dxmvvm:CurrentWindowService ClosingCommand="{Binding OnClosingCommand}" />
+            <!--<dxmvvm:CurrentWindowService ClosingCommand="{Binding OnClosingCommand}" /> CommandParameter="{Binding DefaultModule}"-->
         </dxmvvm:Interaction.Behaviors>
         <dxr:RibbonControl Style="{StaticResource CollectionView.RibbonControl}" DockPanel.Dock="Top"
                             ApplicationButtonSmallIcon="{dx:DXImage Image=Home_16x16.png}" 
@@ -112,7 +112,8 @@
             </dxmvvm:Interaction.Behaviors>
             <dxdo:DockLayoutManager MDIMergeStyle="WhenLoadedOrChildActivated">
                 <dxdo:LayoutGroup>
-                    <dxdo:LayoutPanel Visibility="{Binding IsVisible, Converter={dx:BooleanToVisibilityConverter}}" Caption="{x:Static localization:ViewResources.LayoutPanel_Navigation}" ItemWidth="0.5*" MaxWidth="150"   >
+                    <!--Visibility="{Binding IsVisible, Converter={dx:BooleanToVisibilityConverter}}"-->
+                    <dxdo:LayoutPanel  Caption="{x:Static localization:ViewResources.LayoutPanel_Navigation}" ItemWidth="0.5*" MaxWidth="150"   >
                         <dxdo:LayoutPanel.Resources>
                             <CollectionViewSource x:Key="ItemsSource" Source="{Binding Modules}">
                                 <CollectionViewSource.GroupDescriptions>

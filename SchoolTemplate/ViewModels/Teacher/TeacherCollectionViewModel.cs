@@ -8,6 +8,7 @@ using SchoolTemplate.Common;
 using DataModel;
 using System.Collections.Specialized;
 using System.Collections.Generic;
+using DevExpress.Mvvm;
 
 namespace SchoolTemplate.ViewModels {
 
@@ -37,12 +38,24 @@ namespace SchoolTemplate.ViewModels {
         protected TeacherCollectionViewModel(IUnitOfWorkFactory<ISchoolDBContextUnitOfWork> unitOfWorkFactory = null)
             : base(unitOfWorkFactory ?? UnitOfWorkSource.GetUnitOfWorkFactory(), x => x.Teachers) {
 
-           // Entities.CollectionChanged += OnCollectionChanged;
+            // Entities.CollectionChanged += OnCollectionChanged;
+            Messenger.Default.Register<SchoolMessage>(this, OnIDChanged);
 
-            FilterExpression = x => x.SchoolID == SchoolDBContextViewModel.ID;
         }
 
-       
+        private void OnIDChanged(SchoolMessage cm)
+        {
+            //if (this.GetService<INavigationService>().Current == this)
+            //{
+                decimal ID = cm.SchoolID;
+                FilterExpression = x => x.SchoolID == ID;
+            //}
+        }
+
+        //protected override void OnParameterChanged()
+        //{
+        //    FilterExpression = x => x.SchoolID == (decimal)Parameter;
+        //}
 
         //protected override void OnBeforeEntitySaved(Teacher entity)
 

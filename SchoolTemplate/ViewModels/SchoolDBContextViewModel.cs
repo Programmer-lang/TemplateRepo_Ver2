@@ -21,6 +21,8 @@ namespace SchoolTemplate.ViewModels
         public ObservableCollection<MenuIDHistory> MenuIDHistory { get; set; }
         public virtual MenuIDHistory SelectedMenuID { get; set; }
 
+        INavigationService NavigationService { get { return this.GetService<INavigationService>(); } }
+
         public static decimal ID { get; set; }
 
 
@@ -77,6 +79,7 @@ namespace SchoolTemplate.ViewModels
 
         public override void OnLoaded(SchoolDBContextModuleDescription module)
         {
+            //module = null;
             base.OnLoaded(module);
             this.Show(new SchoolDBContextModuleDescription(SchoolDBContextResources.SchoolPlural, "SchoolCollectionView", TablesGroup, GetPeekCollectionViewModelFactory(x => x.Schools)));
 
@@ -108,7 +111,17 @@ namespace SchoolTemplate.ViewModels
         //   }
         //}
 
-       
+        protected override void OnActiveModuleChanged(SchoolDBContextModuleDescription oldModule)
+        {
+            if (ActiveModule != null && NavigationService != null)
+            {
+                NavigationService.ClearNavigationHistory();
+            }
+
+            Messenger.Default.Send<SchoolMessage>(new SchoolMessage() { SchoolID = ID });
+
+            base.OnActiveModuleChanged(oldModule);
+        }
 
     }
 
@@ -118,5 +131,10 @@ namespace SchoolTemplate.ViewModels
             : base(title, documentType, group, peekCollectionViewModelFactory)
         {
         }
+    }
+
+    public class SchoolMessage
+    {
+        public decimal SchoolID { get; set; }
     }
 }
