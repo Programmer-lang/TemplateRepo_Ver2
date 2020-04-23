@@ -9,7 +9,7 @@ namespace DataModel
     {
         // public static string connectionString = "Server=HASSAN-PC; Database=SchoolDB;Trusted_Connection=True;"; //"data source=HASSAN-PC;initial catalog=SchoolDB;integrated security=True;";
 
-        private const string connectionString = "Server=HASSAN-PC;Database=SchoolDB;Trusted_Connection=True;";
+        private const string connectionString = "Server=HASAN-PC;Database=SchoolDB;Trusted_Connection=True;";
         public SchoolDBContext()
            // : base(connectionString)
         {

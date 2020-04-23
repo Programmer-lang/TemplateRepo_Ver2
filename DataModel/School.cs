@@ -60,9 +60,47 @@ namespace DataModel
             }
         }
 
-      
+        private string _PlainText;
 
-       public virtual ObservableCollection<Teacher> Teachers { get; set; }
+        
+        public string PlainText
+        {
+            get
+            {
+                return _PlainText;
+            }
+
+            set
+            {
+                if (_PlainText != value)
+                {
+                    _PlainText = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private string _RtfText;
+
+      
+        public string RtfText
+        {
+            get
+            {
+                return _RtfText;
+            }
+
+            set
+            {
+                if (_RtfText != value)
+                {
+                    _RtfText = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public virtual ObservableCollection<Teacher> Teachers { get; set; }
 
         
     }
