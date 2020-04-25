@@ -15,7 +15,11 @@
         xmlns:localization="clr-namespace:SchoolTemplate.Localization"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:customcontrol="clr-namespace:CustomRichEditControl;assembly=CustomRichEditControl"
+        xmlns:customcontrol="clr-namespace:CustomRichEditControl;assembly=CustomRichEditControl"
+         
+        xmlns:rte="clr-namespace:RichTextEditor;assembly=RichTextEditor"
+            
+             
              mc:Ignorable="d" d:DesignHeight="400" d:DesignWidth="600" DataContext="{dxmvvm:ViewModelSource viewModel:TeacherCollectionViewModel}">
     <UserControl.Resources>
         
@@ -168,8 +172,8 @@
                 <dxlc:LayoutItem Label="Director:" >
                   <dxe:TextEdit EditValue="{Binding CurrentItem.School.Director,ElementName=gridControl,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </dxlc:LayoutItem>
-                        <dxlc:LayoutItem>
-                            <customcontrol:UserControl1 VerticalAlignment="Top" Height="90" 
+                        <dxlc:LayoutItem >
+                            <customcontrol:UserControl1 VerticalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Auto"
                                     Text="{Binding CurrentItem.School.PlainText,ElementName=gridControl,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                     RtfText="{Binding CurrentItem.School.RtfText,ElementName=gridControl,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,4,0,0">
                                 <dxmvvm:Interaction.Behaviors>
@@ -180,7 +184,26 @@
                         </dxlc:LayoutItem>
               </dxlc:LayoutGroup>
             </DockPanel>
-          </dxlc:LayoutGroup>
+                <DockPanel  Style="{StaticResource EntityView.DetailManyToMany.Container}"  dxlc:LayoutControl.TabHeader="Parent Fields Version2">
+                    <dxlc:LayoutGroup View="GroupBox" Orientation="Vertical" >
+                        <dxlc:LayoutItem Label="School Name:" >
+                            <dxe:TextEdit EditValue="{Binding CurrentItem.School.SchoolName,ElementName=gridControl,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="Director:" >
+                            <dxe:TextEdit EditValue="{Binding CurrentItem.School.Director,ElementName=gridControl,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem>
+                            <rte:RichRTextEditor  VerticalAlignment="Stretch" 
+                                    Text="{Binding CurrentItem.School.PlainText,ElementName=gridControl,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                    RtfText="{Binding CurrentItem.School.RtfText,ElementName=gridControl,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,4,0,0"/>
+                            <!--<dxmvvm:Interaction.Behaviors>
+                                    <dxmvvm:FocusBehavior/>
+                                </dxmvvm:Interaction.Behaviors>-->
+                            
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                </DockPanel>
+            </dxlc:LayoutGroup>
         <!--</dxlc:LayoutControl>-->
 
       </dxlc:LayoutGroup>
