@@ -58,9 +58,9 @@
                 <dxb:BarStaticItem Style="{StaticResource CollectionView.Command.Count}" />
             </dxr:RibbonStatusBarControl.LeftItems>
         </dxr:RibbonStatusBarControl>
+        <dxlc:LayoutGroup View="GroupBox" Orientation="Vertical">
 
-
-      <dxlc:LayoutGroup View="GroupBox" Orientation="Vertical" >
+      <dxlc:LayoutGroup View="GroupBox" Orientation="Vertical" IsCollapsible="True">
 
         <dxg:GridControl x:Name="gridControl"  ItemsSource="{Binding Entities}">
                 <!--Style="{StaticResource CollectionView.GridControl.Editable}"-->
@@ -106,8 +106,8 @@
           <dxg:GridControl.GroupSummary>
             <dxg:GridSummaryItem SummaryType="Count" />
           </dxg:GridControl.GroupSummary>
-        </dxg:GridControl>
-
+            </dxg:GridControl>
+        </dxlc:LayoutGroup>
         <!--<dxlc:LayoutControl x:Name="layoutControl2" Orientation="Vertical"  Visibility="Visible" IsEnabled="True">
           <dxlc:LayoutItem >
             <dxe:TextEdit/>
@@ -123,7 +123,7 @@
               </dxg:LookUpEdit.PopupContentTemplate>
             </dxg:LookUpEdit>
           </dxlc:DataLayoutItem>-->
-          <dxlc:LayoutGroup x:Name="Tabs" View="Tabs" MinHeight="250">
+          <dxlc:LayoutGroup x:Name="Tabs" View="Tabs" VerticalAlignment="Stretch" >
             <DockPanel Style="{StaticResource EntityView.DetailManyToMany.Container}"  dxlc:LayoutControl.TabHeader="Course">
               <!--<dxb:ToolBarControl DockPanel.Dock="Top">
                 <dxb:BarButtonItem Style="{StaticResource EntityView.DetailManyToMany.Command.New}" />
@@ -165,7 +165,7 @@
               
             </DockPanel>
             <DockPanel  Style="{StaticResource EntityView.DetailManyToMany.Container}"  dxlc:LayoutControl.TabHeader="Parent Fields">
-              <dxlc:LayoutGroup View="GroupBox" Orientation="Vertical" >
+              <dxlc:LayoutGroup View="Group" Orientation="Vertical" >
                 <dxlc:LayoutItem Label="School Name:" >
                   <dxe:TextEdit EditValue="{Binding CurrentItem.School.SchoolName,ElementName=gridControl,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 </dxlc:LayoutItem>
@@ -184,16 +184,16 @@
                         </dxlc:LayoutItem>
               </dxlc:LayoutGroup>
             </DockPanel>
-                <DockPanel  Style="{StaticResource EntityView.DetailManyToMany.Container}"  dxlc:LayoutControl.TabHeader="Parent Fields Version2">
-                    <dxlc:LayoutGroup View="GroupBox" Orientation="Vertical" >
+                <DockPanel VerticalAlignment="Stretch"   Style="{StaticResource EntityView.DetailManyToMany.Container}"  dxlc:LayoutControl.TabHeader="Parent Fields Version2">
+                    <dxlc:LayoutGroup View="Group" Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                         <dxlc:LayoutItem Label="School Name:" >
                             <dxe:TextEdit EditValue="{Binding CurrentItem.School.SchoolName,ElementName=gridControl,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="Director:" >
                             <dxe:TextEdit EditValue="{Binding CurrentItem.School.Director,ElementName=gridControl,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </dxlc:LayoutItem>
-                        <dxlc:LayoutItem>
-                            <rte:RichRTextEditor  VerticalAlignment="Stretch" 
+                        <dxlc:LayoutItem VerticalAlignment="Stretch" VerticalContentAlignment="Stretch">
+                            <rte:RichTextEditor HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch"
                                     Text="{Binding CurrentItem.School.PlainText,ElementName=gridControl,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                                     RtfText="{Binding CurrentItem.School.RtfText,ElementName=gridControl,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,4,0,0"/>
                             <!--<dxmvvm:Interaction.Behaviors>
@@ -206,6 +206,6 @@
             </dxlc:LayoutGroup>
         <!--</dxlc:LayoutControl>-->
 
-      </dxlc:LayoutGroup>
+        </dxlc:LayoutGroup>
     </DockPanel>
 </UserControl>
